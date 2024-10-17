@@ -25,8 +25,8 @@ public class TokenService
 
         // Tạo token
         var token = new JwtSecurityToken(
-            issuer: "MiniBank",
-            audience: "MiniBank",
+            issuer: "QuanLyPhongGym",
+            audience: "QuanLyPhongGym",
             claims: claims,
             expires: DateTime.Now.AddMinutes(ExpirationMinutes),
             signingCredentials: creds);
@@ -46,9 +46,9 @@ public class TokenService
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecretKey)),
                 ValidateIssuer = true,
-                ValidIssuer = "MiniBank",
+                ValidIssuer = "QuanLyPhongGym",
                 ValidateAudience = true,
-                ValidAudience = "MiniBank",
+                ValidAudience = "QuanLyPhongGym",
                 ClockSkew = TimeSpan.Zero // Đặt độ trễ về 0
             }, out SecurityToken validatedToken);
 

@@ -13,8 +13,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Configuration;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using QuanLyPhongGym.Controller;
 using Newtonsoft.Json;
 using QuanLyPhongGym.Model;
