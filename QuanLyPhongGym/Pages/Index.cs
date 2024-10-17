@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using FontStyle = System.Drawing.FontStyle;
 
 namespace QuanLyPhongGym.Pages
 {
@@ -22,7 +23,7 @@ namespace QuanLyPhongGym.Pages
         private string imgLoc;
         private bool isAnotherImage = false;
 
-        public Form1()
+        public Index()
         {
             InitializeComponent();
             tabCtrl.DrawItem += new DrawItemEventHandler(tabCtrl_DrawItem);

@@ -5,17 +5,17 @@ using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using MiniBank.Bean;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using MiniBank.Areas;
+using QuanLyPhongGym.Model;
+using QuanLyPhongGym.Areas;
 
 namespace QuanLyPhongGym.Controller
 {
-    public class DBController : BeanBase
+    public class DBController : ControllerModel
     {
         protected string key = ConfigurationManager.AppSettings["KeyCrypt"];
         #region Sử dụng với Sql
@@ -341,7 +341,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="strKeyConString"></param>
         /// <param name="exeCon"></param>
         /// <returns></returns>
-        public DataTable Select(BeanBase obj, string strStoreName, List<string> lstParaName = null, string strKeyConString = "", bool exeCon = true)
+        public DataTable Select(ControllerModel obj, string strStoreName, List<string> lstParaName = null, string strKeyConString = "", bool exeCon = true)
         {
             DataTable retValue = null;
             try
@@ -395,7 +395,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="limit">int?: Lấy giới hạn số dòng. Mặc định là lấy hết</param>
         /// <param name="strKeyConString">Key kết nối DB</param>
         /// <returns>Danh sách đối tượng Bean/></returns>
-        public List<T> SelectAll<T>(BeanBase obj, List<string> lstColsName = null, int? limit = null, string strKeyConString = "")
+        public List<T> SelectAll<T>(ControllerModel obj, List<string> lstColsName = null, int? limit = null, string strKeyConString = "")
         {
             List<T> objList = null;
             try
@@ -425,7 +425,7 @@ namespace QuanLyPhongGym.Controller
                     DataTable tbResult = ds.Tables[0];
                     if (tbResult != null && tbResult.Rows.Count > 0)
                     {
-                        BeanBase.TryParse(tbResult.Rows, out objList);
+                        ControllerModel.TryParse(tbResult.Rows, out objList);
                     }
                 }
             }
@@ -445,7 +445,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="flgIgnoreAttr">True bo qua thuoc tinh store select</param>
         /// <param name="exeCon"></param>
         /// <returns></returns>
-        public virtual T Select<T>(BeanBase obj, string strKeyConString = "", List<string> listCols = null, bool flgIgnoreAttr = false, bool exeCon = true)
+        public virtual T Select<T>(ControllerModel obj, string strKeyConString = "", List<string> listCols = null, bool flgIgnoreAttr = false, bool exeCon = true)
         {
             T retValue = default(T);
             try
@@ -547,7 +547,7 @@ namespace QuanLyPhongGym.Controller
                 {
                     DataTable tbResult = ds.Tables[0];
                     if (tbResult != null && tbResult.Rows.Count > 0)
-                        BeanBase.TryParse(tbResult.Rows[0], out retValue);
+                        ControllerModel.TryParse(tbResult.Rows[0], out retValue);
                 }
             }
             finally
@@ -570,7 +570,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="flgIgnoreAttr">True bo qua thuoc tinh store select</param>
         /// <param name="exeCon"></param>
         /// <returns></returns>
-        public object SelectReturnObject(BeanBase obj, string strKeyConString = "", List<string> listCols = null, bool flgIgnoreAttr = false, bool exeCon = true)
+        public object SelectReturnObject(ControllerModel obj, string strKeyConString = "", List<string> listCols = null, bool flgIgnoreAttr = false, bool exeCon = true)
         {
             object retValue = null;
             try
@@ -671,7 +671,7 @@ namespace QuanLyPhongGym.Controller
                     if (tbResult != null && tbResult.Rows.Count > 0)
                     {
                         retValue = Activator.CreateInstance(type);
-                        BeanBase.TryParse(tbResult.Rows[0], ref retValue);
+                        ControllerModel.TryParse(tbResult.Rows[0], ref retValue);
                     }
                 }
             }
@@ -795,7 +795,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="exeCon"></param>
         /// <param name="flgIgnoreAttr">True bo qua thuoc tinh store select</param>
         /// <returns></returns>
-        public virtual int Delete(BeanBase obj, string strKeyConString = "", bool exeCon = true, bool flgIgnoreAttr = false)
+        public virtual int Delete(ControllerModel obj, string strKeyConString = "", bool exeCon = true, bool flgIgnoreAttr = false)
         {
             int retValue = -1;
             try
@@ -875,7 +875,7 @@ namespace QuanLyPhongGym.Controller
         ///  <param name="exeCon"></param>
         ///  <param name="flgIgnoreAttr"></param>
         ///  <returns></returns>
-        public virtual int Update(BeanBase obj, List<string> colsUpdate = null, bool flgIgnoreNullVal = true, string strKeyConString = "", bool exeCon = true, bool flgIgnoreAttr = false)
+        public virtual int Update(ControllerModel obj, List<string> colsUpdate = null, bool flgIgnoreNullVal = true, string strKeyConString = "", bool exeCon = true, bool flgIgnoreAttr = false)
         {
             int retValue = -1;
             try
@@ -1073,7 +1073,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="strKeyConString"></param>
         /// <param name="exeCon"></param>
         /// <returns>int: -1 là chạy lỗi; Ngược lại là chạy thành công.</returns>
-        public virtual int Execute(BeanBase obj, string strStoreName, List<SqlParameter> retParaList = null, string strKeyConString = "", bool exeCon = true)
+        public virtual int Execute(ControllerModel obj, string strStoreName, List<SqlParameter> retParaList = null, string strKeyConString = "", bool exeCon = true)
         {
             int retValue = -1;
             try
@@ -1175,7 +1175,7 @@ namespace QuanLyPhongGym.Controller
         /// <returns></returns>
         public string CreateNewId(Type type, string strKeyConString = "", bool addSchema = false)
         {
-            BeanBase obj = new BeanBase();
+            ControllerModel obj = new ControllerModel();
             bool flgOpenConn = false;
             string retValue = string.Empty;
             string tableName = obj.GetTableName(type, addSchema);
@@ -1225,7 +1225,7 @@ namespace QuanLyPhongGym.Controller
         /// <returns></returns>
         public string CreateExtraId(Type type, string strKeyConString = "", bool addSchema = false)
         {
-            BeanBase obj = new BeanBase();
+            ControllerModel obj = new ControllerModel();
             string retValue;
             string tableName = obj.GetTableName(type, addSchema);
 
@@ -1392,7 +1392,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="strKeyConString"></param>
         /// <param name="exeCon"></param>
         /// <returns></returns>
-        public object Select(BeanBase obj, string strKeyConString = "", bool exeCon = true)
+        public object Select(ControllerModel obj, string strKeyConString = "", bool exeCon = true)
         {
             object retValue = null;
             try
@@ -1471,7 +1471,7 @@ namespace QuanLyPhongGym.Controller
                     if (tbResult != null && tbResult.Rows.Count > 0)
                     {
                         retValue = Activator.CreateInstance(type);
-                        BeanBase.TryParse(tbResult.Rows[0], ref retValue);
+                        ControllerModel.TryParse(tbResult.Rows[0], ref retValue);
                     }
                 }
             }
@@ -1495,7 +1495,7 @@ namespace QuanLyPhongGym.Controller
         /// <param name="retPara"></param>
         /// <param name="exeCon"></param>
         /// <returns>ID (Guid, int) của item vừa insert </returns>
-        public virtual int Insert(BeanBase obj, SqlParameter retPara = null, bool flgIgnoreNullVal = true, string strKeyConString = "", bool exeCon = true)
+        public virtual int Insert(ControllerModel obj, SqlParameter retPara = null, bool flgIgnoreNullVal = true, string strKeyConString = "", bool exeCon = true)
         {
             int retValue = -1;
             try
