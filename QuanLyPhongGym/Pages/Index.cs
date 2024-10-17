@@ -26,25 +26,25 @@ namespace QuanLyPhongGym.Pages
         public Index()
         {
             InitializeComponent();
-            tabCtrl.DrawItem += new DrawItemEventHandler(tabCtrl_DrawItem);
+            tab_Ctrl.DrawItem += new DrawItemEventHandler(tabCtrl_DrawItem);
         }
 
         // Search boxes placeholders
-        private void HoiVienSearch_Enter(object sender, EventArgs e)
+        private void txt_HoiVienSearch_Enter(object sender, EventArgs e)
         {
-            if (txtSearchHV.Text == "Search...")
+            if (txt_SearchHV.Text == "Search...")
             {
-                txtSearchHV.Text = "";
-                txtSearchHV.ForeColor = Color.Black;
+                txt_SearchHV.Text = "";
+                txt_SearchHV.ForeColor = Color.Black;
             }
         }
 
-        private void HoiVienSearch_Leave(object sender, EventArgs e)
+        private void txt_HoiVienSearch_Leave(object sender, EventArgs e)
         {
-            if (txtSearchHV.Text == "")
+            if (txt_SearchHV.Text == "")
             {
-                txtSearchHV.Text = "Search...";
-                txtSearchHV.ForeColor = Color.Gray;
+                txt_SearchHV.Text = "Search...";
+                txt_SearchHV.ForeColor = Color.Gray;
             }
         }
 
@@ -205,14 +205,14 @@ namespace QuanLyPhongGym.Pages
 
         private void getHVRowToTxtBOX(DataGridViewRow row)
         {
-            txtHoTen.Text = row.Cells["hoten"].Value.ToString();
-            cmbGioiTinh.Text = row.Cells["gioitinh"].Value.ToString();
-            txtSDT.Text = row.Cells["sdt"].Value.ToString();
-            txtMaHV.Text = row.Cells["id_hv"].Value.ToString();
-            cmbGoiTap.Text = row.Cells["goitap"].Value.ToString();
+            txt_HoTen.Text = row.Cells["hoten"].Value.ToString();
+            cbb_GioiTinh.Text = row.Cells["gioitinh"].Value.ToString();
+            txt_SDT.Text = row.Cells["sdt"].Value.ToString();
+            txt_MaHV.Text = row.Cells["id_hv"].Value.ToString();
+            cbb_GoiTap.Text = row.Cells["goitap"].Value.ToString();
 
             DateTime dt = DateTime.ParseExact(row.Cells["ngayhethan"].Value.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
-            lblHetHan.Text = dt.ToString("M/d/yyyy");
+            lbl_HetHan.Text = dt.ToString("M/d/yyyy");
 
             Byte[] data = new Byte[0];
             data = (Byte[])(row.Cells["hinhanh"].Value);
@@ -262,18 +262,6 @@ namespace QuanLyPhongGym.Pages
             picBoxTB.Image = Image.FromStream(mem);
         }
 
-        public void LayThongTinHoiVien()
-        {
-            //hoiVienDTO.HoTen = txtHoTen.Text;
-            //hoiVienDTO.GioiTinh = cmbGioiTinh.Text;
-            //hoiVienDTO.SDT = txtSDT.Text;
-            //hoiVienDTO.GoiTap = cmbGoiTap.Text;
-            //if (isAnotherImage)
-            //    hoiVienDTO.HinhAnh = ImageToByteArray(picBoxHV.ImageLocation);
-            //else
-            //    hoiVienDTO.HinhAnh = (Byte[])tbl_DSHoiVien.CurrentRow.Cells["hinhanh"].Value;
-        }
-
         // Events
         private void Index_Load(object sender, EventArgs e)
         {
@@ -288,10 +276,10 @@ namespace QuanLyPhongGym.Pages
             Brush _textBrush;
 
             // Get the item from the collection.
-            TabPage _tabPage = tabCtrl.TabPages[e.Index];
+            TabPage _tabPage = tab_Ctrl.TabPages[e.Index];
 
             // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = tabCtrl.GetTabRect(e.Index);
+            Rectangle _tabBounds = tab_Ctrl.GetTabRect(e.Index);
 
             if (e.State == DrawItemState.Selected)
             {
@@ -319,9 +307,9 @@ namespace QuanLyPhongGym.Pages
             // Draw image if available
             int indent = 3;
             Rectangle rect = new Rectangle(e.Bounds.X, e.Bounds.Y + indent, e.Bounds.Width, e.Bounds.Height - indent);
-            if (tabCtrl.TabPages[e.Index].ImageIndex >= 0)
+            if (tab_Ctrl.TabPages[e.Index].ImageIndex >= 0)
             {
-                Image img = tabCtrl.ImageList.Images[tabCtrl.TabPages[e.Index].ImageIndex];
+                Image img = tab_Ctrl.ImageList.Images[tab_Ctrl.TabPages[e.Index].ImageIndex];
                 float _x = (rect.X + rect.Width) - img.Width - 2 * indent;
                 float _y = ((rect.Height - img.Height) / 2.0f) + rect.Y;
                 e.Graphics.DrawImage(img, _x, _y);
@@ -366,10 +354,10 @@ namespace QuanLyPhongGym.Pages
             loadHoiVien();
         }
 
-        private void cmbGoiTap_TextChanged(object sender, EventArgs e)
+        private void cbb_GoiTap_TextChanged(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            switch (cmbGoiTap.Text)
+            switch (cbb_GoiTap.Text)
             {
                 case "1 tháng":
                     dt = dt.AddMonths(1);
@@ -384,20 +372,20 @@ namespace QuanLyPhongGym.Pages
                     dt = dt.AddMonths(7);
                     break;
             }
-            lblHetHan.Text = dt.ToString("d/M/yyyy", CultureInfo.InvariantCulture);
+            lbl_HetHan.Text = dt.ToString("d/M/yyyy", CultureInfo.InvariantCulture);
         }
 
         private void btn_SuaHoiVien_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = tbl_DSHoiVien.CurrentRow;
             getHVRowToTxtBOX(row);
-            txtHoTen.ReadOnly = false;
-            txtSDT.ReadOnly = false;
-            cmbGioiTinh.Enabled = true;
-            btnLuuHV.Enabled = true;
+            txt_HoTen.ReadOnly = false;
+            txt_SDT.ReadOnly = false;
+            cbb_GioiTinh.Enabled = true;
+            btn_CapNhatHV.Enabled = true;
         }
 
-        private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_SDT_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
@@ -409,20 +397,20 @@ namespace QuanLyPhongGym.Pages
 
         private void dtgvHoiVien_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            btnGiaHanHV.Enabled = true;
+            btn_GiaHanHV.Enabled = true;
             DataGridViewRow row = tbl_DSHoiVien.CurrentRow;
             getHVRowToTxtBOX(row);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            loadHoiVien(txtSearchHV.Text);
+            loadHoiVien(txt_SearchHV.Text);
         }
 
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        private void txt_Search_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                loadHoiVien(txtSearchHV.Text);
+                loadHoiVien(txt_SearchHV.Text);
         }
 
         private void dtgvSanPham_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -537,7 +525,7 @@ namespace QuanLyPhongGym.Pages
 
         private void picBoxHV_DoubleClick(object sender, EventArgs e)
         {
-            if (btnLuuHV.Enabled == false)
+            if (btn_CapNhatHV.Enabled == false)
                 return;
 
             try

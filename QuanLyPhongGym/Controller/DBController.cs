@@ -1194,7 +1194,7 @@ namespace QuanLyPhongGym.Controller
                 {
                     Cmm.Parameters.Clear();
                     Cmm.CommandType = CommandType.StoredProcedure;
-                    Cmm.CommandText = "WF_DCMOP_Create_ExtraId";
+                    Cmm.CommandText = "QuanLyPhongGym_Create_ExtraId";
                     Cmm.Parameters.AddWithValue("@TableName", tableName);
                     Cmm.Parameters.AddWithValue("@ColName", lstPriKey[0]);
                     SqlDataAdapter dap = new SqlDataAdapter(Cmm);
