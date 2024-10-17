@@ -100,7 +100,7 @@ namespace QuanLyPhongGym.Pages
                     // Tạo một mảng các giá trị cho từng cột
                     string[] row = new string[]
                     {
-                        hoiVien.ID,
+                        hoiVien.MaHV,
                         hoiVien.HoTen
                     };
                     tbl_DSHoiVien.Rows.Add(row);
