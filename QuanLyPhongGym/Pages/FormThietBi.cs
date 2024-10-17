@@ -1,15 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using QuanLy.BUS;
-using QuanLy.DTO;
 
 namespace QuanLyPhongGym.Pages
 {
     public partial class FormThietBi : Form
     {
-        private ThietBiCTL thietBiCTL = new ThietBiCTL();
-        private ThietBiDTO tb = new ThietBiDTO();
+        //private ThietBiCTL thietBiCTL = new ThietBiCTL();
+        //private ThietBiDTO tb = new ThietBiDTO();
         private int soMay;
         private int soTa;
         private string imgLoc;
@@ -52,36 +50,36 @@ namespace QuanLyPhongGym.Pages
         {
             int result = 0;
 
-            tb.Ten = txtTenTB.Text;
-            tb.Loai = cmbLoaiTB.Text;
-            tb.HangSX = txtHangSXTB.Text;
-            tb.TinhTrang = cmbTinhTrangTB.Text;
-            tb.GhiChu = txtGhiChuTB.Text;
+            //tb.Ten = txtTenTB.Text;
+            //tb.Loai = cmbLoaiTB.Text;
+            //tb.HangSX = txtHangSXTB.Text;
+            //tb.TinhTrang = cmbTinhTrangTB.Text;
+            //tb.GhiChu = txtGhiChuTB.Text;
 
-            bool sl = int.TryParse(txtSoLuongTB.Text, out result);
-            tb.SoLuong = result;
+            //bool sl = int.TryParse(txtSoLuongTB.Text, out result);
+            //tb.SoLuong = result;
 
-            if (tb.TinhTrang != "Hư")
-                tb.SoLuongHu = 0;
-            else
-            {
-                bool slh = int.TryParse(txtSoLuongHuTB.Text, out result);
-                tb.SoLuongHu = result;
-            }
+            //if (tb.TinhTrang != "Hư")
+            //    tb.SoLuongHu = 0;
+            //else
+            //{
+            //    bool slh = int.TryParse(txtSoLuongHuTB.Text, out result);
+            //    tb.SoLuongHu = result;
+            //}
 
-            if (tb.Loai == "Máy")
-            {
-                soMay++;
-                tb.ID_TB = "MA00" + soMay.ToString();
-            }
-            else if (tb.Loai == "Tạ")
-            {
-                soTa++;
-                tb.ID_TB = "TA00" + soTa.ToString();
-            }
+            //if (tb.Loai == "Máy")
+            //{
+            //    soMay++;
+            //    tb.ID_TB = "MA00" + soMay.ToString();
+            //}
+            //else if (tb.Loai == "Tạ")
+            //{
+            //    soTa++;
+            //    tb.ID_TB = "TA00" + soTa.ToString();
+            //}
 
-            if (picBoxTB.Image != null)
-                tb.HinhAnh = ImageToByteArray(imgLoc);
+            //if (picBoxTB.Image != null)
+            //    tb.HinhAnh = ImageToByteArray(imgLoc);
         }
 
         private void btnLuuSP_Click_1(object sender, EventArgs e)
@@ -89,8 +87,8 @@ namespace QuanLyPhongGym.Pages
             try
             {
                 LayThongTinThietBi();
-                thietBiCTL.ThietBi = tb;
-                thietBiCTL.insert();
+                //thietBiCTL.ThietBi = tb;
+                //thietBiCTL.insert();
 
                 MessageBox.Show("Thêm THÀNH CÔNG!", "Thông báo");
             }

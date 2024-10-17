@@ -46,30 +46,30 @@ namespace QuanLyPhongGym.Pages
 
         private void LayThongTinSanPham()
         {
-            sp.ID_SP = curRow.Cells["id_sp"].Value.ToString();
-            sp.Ten = txtTenSP.Text;
-            sp.Loai = cmbLoaiSP.Text;
-            sp.NgayNhap = dateTimePicker.Value.Date;
+            //sp.ID_SP = curRow.Cells["id_sp"].Value.ToString();
+            //sp.Ten = txtTenSP.Text;
+            //sp.Loai = cmbLoaiSP.Text;
+            //sp.NgayNhap = dateTimePicker.Value.Date;
 
-            int result = 0;
-            bool b = int.TryParse(txtSoLuongSP.Text, out result);
-            sp.SoLuong = result;
+            //int result = 0;
+            //bool b = int.TryParse(txtSoLuongSP.Text, out result);
+            //sp.SoLuong = result;
 
-            sp.DonGia = txtDonGiaSP.Text;
-            sp.TrongLuong = txtTrongLuongSP.Text;
-            sp.HangSX = txtHangSXSP.Text;
-            sp.TinhTrang = cmbTinhTrangSP.Text;
-            if (!isAnotherImage)
-                sp.HinhAnh = (Byte[])curRow.Cells["hinhanh"].Value;
-            else
-                sp.HinhAnh = ImageToByteArray(imgLoc);
+            //sp.DonGia = txtDonGiaSP.Text;
+            //sp.TrongLuong = txtTrongLuongSP.Text;
+            //sp.HangSX = txtHangSXSP.Text;
+            //sp.TinhTrang = cmbTinhTrangSP.Text;
+            //if (!isAnotherImage)
+            //    sp.HinhAnh = (Byte[])curRow.Cells["hinhanh"].Value;
+            //else
+            //    sp.HinhAnh = ImageToByteArray(imgLoc);
         }
 
         private void btnLuuSP_Click(object sender, EventArgs e)
         {
             LayThongTinSanPham();
-            sanPhamCTL.SanPham = sp;
-            sanPhamCTL.update();
+            //sanPhamCTL.SanPham = sp;
+            //sanPhamCTL.update();
 
             MessageBox.Show("Lưu THÀNH CÔNG!", "Thông báo");
         }

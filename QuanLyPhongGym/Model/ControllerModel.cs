@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using QuanLyPhongGym.Areas;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
@@ -605,7 +607,7 @@ namespace QuanLyPhongGym.Model
         /// Sao chép thành đối tượng mới, thuộc tính phức tạp vẫn bị tham chiếu
         /// </summary>
         /// <returns></returns>
-        public static T Clone<T>(this BeanBase obj)
+        public static T Clone<T>(this ControllerModel obj)
         {
             return (T)obj.Clone();
         }

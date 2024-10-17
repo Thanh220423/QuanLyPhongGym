@@ -118,12 +118,6 @@
     <Compile Include="Areas\CmmFunc.cs" />
     <Compile Include="Areas\TokenService.cs" />
     <Compile Include="Controller\DBController.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\ChucVuModel.cs" />
     <Compile Include="Model\ControllerModel.cs" />

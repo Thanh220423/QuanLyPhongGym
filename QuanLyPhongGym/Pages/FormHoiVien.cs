@@ -7,8 +7,8 @@ namespace QuanLyPhongGym.Pages
 {
     public partial class FormHoiVien : Form
     {
-        private HoiVienCTL hoiVienCTL = new HoiVienCTL();
-        private HoiVienDTO hv = new HoiVienDTO();
+        //private HoiVienCTL hoiVienCTL = new HoiVienCTL();
+        //private HoiVienDTO hv = new HoiVienDTO();
         private int iLastRowID;
         private string imgLoc;
 
@@ -51,16 +51,16 @@ namespace QuanLyPhongGym.Pages
 
         private void LayThongTinHoiVien()
         {
-            hv.HoTen = txtHoTen.Text;
-            hv.GioiTinh = cmbGioiTinh.Text;
-            hv.SDT = txtSDT.Text;
-            hv.GoiTap = cmbGoiTap.Text;
-            hv.NgayHetHan = DateTime.Now;
-            iLastRowID++;
-            hv.ID_HV = "KH00" + iLastRowID.ToString();
+            //hv.HoTen = txtHoTen.Text;
+            //hv.GioiTinh = cmbGioiTinh.Text;
+            //hv.SDT = txtSDT.Text;
+            //hv.GoiTap = cmbGoiTap.Text;
+            //hv.NgayHetHan = DateTime.Now;
+            //iLastRowID++;
+            //hv.ID_HV = "KH00" + iLastRowID.ToString();
 
-            if (picBoxHV.Image != null)
-                hv.HinhAnh = ImageToByteArray(imgLoc);
+            //if (picBoxHV.Image != null)
+            //    hv.HinhAnh = ImageToByteArray(imgLoc);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -68,8 +68,8 @@ namespace QuanLyPhongGym.Pages
             try
             {
                 LayThongTinHoiVien();
-                hoiVienCTL.HoiVien = hv;
-                hoiVienCTL.insert();
+                //hoiVienCTL.HoiVien = hv;
+                //hoiVienCTL.insert();
 
                 MessageBox.Show("Thêm THÀNH CÔNG!", "Thông báo");
             }

@@ -59,7 +59,7 @@ namespace QuanLyPhongGym.Areas
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: ConvertToTableParams - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: ConvertToTableParams - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
 
             return retTable;
@@ -125,7 +125,7 @@ namespace QuanLyPhongGym.Areas
                 }
                 catch (Exception ex)
                 {
-                    CmmFunc.TrackLogSql($"Method: SetPropertyValue - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                    CmmFunc.TrackLogSql($"Method: SetPropertyValue - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
                 }
             }
             else
@@ -397,7 +397,7 @@ namespace QuanLyPhongGym.Areas
                         }
                         catch (Exception ex)
                         {
-                            CmmFunc.TrackLogSql($"Method: ConvertToModel - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                            CmmFunc.TrackLogSql($"Method: ConvertToModel - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
                         }
                     }
                 }
@@ -498,7 +498,7 @@ namespace QuanLyPhongGym.Areas
                         }
                         catch (Exception ex)
                         {
-                            CmmFunc.TrackLogSql($"Method: ConvertToList - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                            CmmFunc.TrackLogSql($"Method: ConvertToList - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
                         }
                     }
                 }
@@ -521,7 +521,7 @@ namespace QuanLyPhongGym.Areas
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: TryDeserializeObject - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: TryDeserializeObject - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
             return retValue;
         }
@@ -656,7 +656,7 @@ namespace QuanLyPhongGym.Areas
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: ExportExcelByAPI - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: ExportExcelByAPI - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
         }
 
@@ -724,7 +724,7 @@ namespace QuanLyPhongGym.Areas
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: ExportExcel - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: ExportExcel - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
         }
 
@@ -742,7 +742,7 @@ namespace QuanLyPhongGym.Areas
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: GetSettingByKey - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: GetSettingByKey - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
 
             return retValue;
@@ -815,9 +815,9 @@ namespace QuanLyPhongGym.Areas
             MessageBox.Show(message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public BeanEmployee getDataLogin(Form formCurrent, Form form)
+        public AccountModel getDataLogin(Form formCurrent, Form form)
         {
-            BeanEmployee employee = new BeanEmployee();
+            AccountModel account = new AccountModel();
             try
             {
 
@@ -836,16 +836,16 @@ namespace QuanLyPhongGym.Areas
                         formCurrent.Hide();
                     }
 
-                    employee.Id = UserSession.Instance.Id;
-                    employee.UserName = UserSession.Instance.UserName;
-                    employee.Role = UserSession.Instance.Role;
+                    account.ID = UserSession.Instance.Id;
+                    account.TaiKhoan = UserSession.Instance.UserName;
+                    account.ChucVu = UserSession.Instance.Role;
                 }
             }
             catch (Exception ex)
             {
-                CmmFunc.TrackLogSql($"Method: getDataLogin - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                CmmFunc.TrackLogSql($"Method: getDataLogin - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
             }
-            return employee;
+            return account;
         }
 
         public string EncryptString(string plainText)
@@ -983,7 +983,7 @@ namespace QuanLyPhongGym.Areas
                 }
                 catch (Exception ex)
                 {
-                    CmmFunc.TrackLogSql($"Method: SetPropertyValueByName - File: TT.WF_DCMOP.Areas.Areas.CmmFunc", ex + string.Empty);
+                    CmmFunc.TrackLogSql($"Method: SetPropertyValueByName - File: QuanLyPhongGym.Areas.CmmFunc", ex + string.Empty);
                 }
             }
             else

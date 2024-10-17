@@ -4,20 +4,20 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
-using System.Windows;
 using FontStyle = System.Drawing.FontStyle;
+using QuanLyPhongGym.Controller;
+using QuanLyPhongGym.Areas;
+using QuanLyPhongGym.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace QuanLyPhongGym.Pages
 {
     public partial class Index : Form
     {
-        //private HoiVienCTL hoiVienCTL = new HoiVienCTL();
-        //private SanPhamCTL sanPhamCTL = new SanPhamCTL();
-        //private ThietBiCTL thietBiCTL = new ThietBiCTL();
-        //private HoiVienDTO hoiVienDTO = new HoiVienDTO();
-        //private SanPhamDTO sanPhamDTO = new SanPhamDTO();
-        //private ThietBiDTO thietBiDTO = new ThietBiDTO();
-        private ArrayList dsHoiVien;
+        private DBController _dbController = new DBController();
+        private CmmFunc _cmmFunc = new CmmFunc();
+        private List<HoiVienModel> _DS_HoiVien;
         private ArrayList dsSanPham;
         private ArrayList dsThietBi;
         private string imgLoc;
@@ -85,29 +85,30 @@ namespace QuanLyPhongGym.Pages
         }
 
         // Support functions
-        private void loadHoiVien(string keyword = null)
+        private void load_HoiVien(string keyword = null)
         {
-            if (dsHoiVien != null)
-                dsHoiVien.Clear();
+            tbl_DSHoiVien.Columns[0].HeaderText = "Mã học viên";
+            tbl_DSHoiVien.Columns[1].HeaderText = "Họ tên";
+            tbl_DSHoiVien.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            //dsHoiVien = hoiVienCTL.getDsHocVien(keyword);
-            //if (dsHoiVien.Count == 0)
-            //    tbl_DSHoiVien.DataSource = null;
-            //tbl_DSHoiVien.DataSource = dsHoiVien;
-            //if (tbl_DSHoiVien.RowCount > 0)
-            //{
-            //    tbl_DSHoiVien.Columns[0].HeaderText = "Mã học viên";
-            //    tbl_DSHoiVien.Columns[1].HeaderText = "Họ tên";
-            //    tbl_DSHoiVien.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //    tbl_DSHoiVien.Columns[2].Visible = false;
-            //    tbl_DSHoiVien.Columns[3].Visible = false;
-            //    tbl_DSHoiVien.Columns[4].Visible = false;
-            //    tbl_DSHoiVien.Columns[5].Visible = false;
-            //    tbl_DSHoiVien.Columns[6].Visible = false;
-            //}
+            tbl_DSHoiVien.Rows.Clear();
+            _DS_HoiVien = _dbController.SelectAll<HoiVienModel>(new HoiVienModel());
+            if (_DS_HoiVien != null)
+            {
+                foreach (HoiVienModel hoiVien in _DS_HoiVien)
+                {
+                    // Tạo một mảng các giá trị cho từng cột
+                    string[] row = new string[]
+                    {
+                        hoiVien.ID,
+                        hoiVien.HoTen
+                    };
+                    tbl_DSHoiVien.Rows.Add(row);
+                }
+            }
         }
 
-        private void loadSanPham(string keyword = null)
+        private void load_SanPham(string keyword = null)
         {
             if (dsSanPham != null)
                 dsSanPham.Clear();
@@ -130,7 +131,7 @@ namespace QuanLyPhongGym.Pages
             //dtgvSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
-        private void loadThietBi(string keyword = null)
+        private void load_ThietBi(string keyword = null)
         {
             if (dsThietBi != null)
                 dsThietBi.Clear();
@@ -265,9 +266,9 @@ namespace QuanLyPhongGym.Pages
         // Events
         private void Index_Load(object sender, EventArgs e)
         {
-            loadHoiVien();
-            loadSanPham();
-            loadThietBi();
+            load_HoiVien();
+            load_SanPham();
+            load_ThietBi();
         }
 
         private void tabCtrl_DrawItem(object sender, DrawItemEventArgs e)
@@ -322,7 +323,7 @@ namespace QuanLyPhongGym.Pages
             string lastRowID = lastRow.Cells["id_hv"].Value.ToString();
             FormHoiVien fadd = new FormHoiVien(lastRowID);
             fadd.ShowDialog();
-            loadHoiVien();
+            load_HoiVien();
         }
 
         private void btn_XoaHoiVien_Click(object sender, EventArgs e)
@@ -338,7 +339,7 @@ namespace QuanLyPhongGym.Pages
             //    hoiVienCTL.delete();
 
             //    MessageBox.Show("Xóa THÀNH CÔNG!");
-            //    loadHoiVien();
+            //    load_HoiVien();
             //}
             //catch (Exception)
             //{
@@ -351,7 +352,7 @@ namespace QuanLyPhongGym.Pages
             DataGridViewRow curRow = tbl_DSHoiVien.CurrentRow;
             FormGiaHanHV fGiaHan = new FormGiaHanHV(curRow);
             fGiaHan.ShowDialog();
-            loadHoiVien();
+            load_HoiVien();
         }
 
         private void cbb_GoiTap_TextChanged(object sender, EventArgs e)
@@ -404,13 +405,13 @@ namespace QuanLyPhongGym.Pages
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            loadHoiVien(txt_SearchHV.Text);
+            load_HoiVien(txt_SearchHV.Text);
         }
 
         private void txt_Search_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                loadHoiVien(txt_SearchHV.Text);
+                load_HoiVien(txt_SearchHV.Text);
         }
 
         private void dtgvSanPham_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -425,7 +426,7 @@ namespace QuanLyPhongGym.Pages
             string lastRowID = lastRow.Cells["id_sp"].Value.ToString();
             FormSanPham fadd = new FormSanPham(lastRow, lastRowID);
             fadd.ShowDialog();
-            loadSanPham();
+            load_SanPham();
         }
 
         private void btnXoaSP_Click(object sender, EventArgs e)
@@ -441,7 +442,7 @@ namespace QuanLyPhongGym.Pages
                 //sanPhamCTL.delete();
 
                 MessageBox.Show("Xóa THÀNH CÔNG!");
-                loadSanPham();
+                load_SanPham();
             }
             catch (Exception)
             {
@@ -454,18 +455,18 @@ namespace QuanLyPhongGym.Pages
             DataGridViewRow curRow = dtgvSanPham.CurrentRow;
             FormSanPham fEdit = new FormSanPham(curRow, null);
             fEdit.ShowDialog();
-            loadSanPham();
+            load_SanPham();
         }
 
         private void txtSearchSP_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                loadSanPham(txtSearchSP.Text);
+                load_SanPham(txtSearchSP.Text);
         }
 
         private void btnSearchSP_Click(object sender, EventArgs e)
         {
-            loadSanPham(txtSearchSP.Text);
+            load_SanPham(txtSearchSP.Text);
         }
 
         private void dtgvThietBi_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -480,7 +481,7 @@ namespace QuanLyPhongGym.Pages
             //int soTa = thietBiCTL.countTBType("Tạ");
             //fThemTB fadd = new fThemTB(soMay, soTa);
             //fadd.ShowDialog();
-            loadThietBi();
+            load_ThietBi();
         }
 
         private void btnXoaTB_Click(object sender, EventArgs e)
@@ -496,7 +497,7 @@ namespace QuanLyPhongGym.Pages
                 //thietBiCTL.delete();
 
                 MessageBox.Show("Xóa THÀNH CÔNG!");
-                loadThietBi();
+                load_ThietBi();
             }
             catch (Exception)
             {
@@ -509,18 +510,18 @@ namespace QuanLyPhongGym.Pages
             DataGridViewRow curRow = dtgvThietBi.CurrentRow;
             //fSuaTB fEdit = new fSuaTB(curRow);
             //fEdit.ShowDialog();
-            loadThietBi();
+            load_ThietBi();
         }
 
         private void txtSearchTB_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                loadThietBi(txtSearchTB.Text);
+                load_ThietBi(txtSearchTB.Text);
         }
 
         private void btnSearchTB_Click(object sender, EventArgs e)
         {
-            loadThietBi(txtSearchTB.Text);
+            load_ThietBi(txtSearchTB.Text);
         }
 
         private void picBoxHV_DoubleClick(object sender, EventArgs e)
