@@ -117,7 +117,7 @@
             this.btnSuaHV = new System.Windows.Forms.Button();
             this.btnThemHV = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dtgvHoiVien = new System.Windows.Forms.DataGridView();
+            this.tbl_DSHoiVien = new System.Windows.Forms.DataGridView();
             this.groupBoxHV = new System.Windows.Forms.GroupBox();
             this.txtMaHV = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHV)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvHoiVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbl_DSHoiVien)).BeginInit();
             this.groupBoxHV.SuspendLayout();
             this.tabCtrl.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -835,6 +835,7 @@
             this.btnLuuHV.TabIndex = 28;
             this.btnLuuHV.Text = "Lưu";
             this.btnLuuHV.UseVisualStyleBackColor = true;
+            this.btnLuuHV.ContextMenuStripChanged += new System.EventHandler(this.btn_CapNhatHoiVien_Click);
             // 
             // cmbGioiTinh
             // 
@@ -944,6 +945,7 @@
             this.btnGiaHanHV.TabIndex = 27;
             this.btnGiaHanHV.Text = "Gia hạn";
             this.btnGiaHanHV.UseVisualStyleBackColor = true;
+            this.btnGiaHanHV.Click += new System.EventHandler(this.btn_GiaHanHoiVien_Click);
             // 
             // label31
             // 
@@ -984,6 +986,7 @@
             this.btnXoaHV.TabIndex = 4;
             this.btnXoaHV.Text = "Xóa";
             this.btnXoaHV.UseVisualStyleBackColor = true;
+            this.btnXoaHV.Click += new System.EventHandler(this.btn_XoaHoiVien_Click);
             // 
             // btnSuaHV
             // 
@@ -993,6 +996,7 @@
             this.btnSuaHV.TabIndex = 3;
             this.btnSuaHV.Text = "Sửa";
             this.btnSuaHV.UseVisualStyleBackColor = true;
+            this.btnSuaHV.Click += new System.EventHandler(this.btn_SuaHoiVien_Click);
             // 
             // btnThemHV
             // 
@@ -1002,6 +1006,7 @@
             this.btnThemHV.TabIndex = 2;
             this.btnThemHV.Text = "Thêm";
             this.btnThemHV.UseVisualStyleBackColor = true;
+            this.btnThemHV.Click += new System.EventHandler(this.btn_ThemHoiVien_Click);
             // 
             // tabPage1
             // 
@@ -1014,7 +1019,7 @@
             this.tabPage1.Controls.Add(this.btnXoaHV);
             this.tabPage1.Controls.Add(this.btnSuaHV);
             this.tabPage1.Controls.Add(this.btnThemHV);
-            this.tabPage1.Controls.Add(this.dtgvHoiVien);
+            this.tabPage1.Controls.Add(this.tbl_DSHoiVien);
             this.tabPage1.Controls.Add(this.groupBoxHV);
             this.tabPage1.ImageIndex = 0;
             this.tabPage1.Location = new System.Drawing.Point(124, 4);
@@ -1024,19 +1029,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Hội viên";
             // 
-            // dtgvHoiVien
+            // tbl_DSHoiVien
             // 
-            this.dtgvHoiVien.AllowUserToAddRows = false;
-            this.dtgvHoiVien.AllowUserToDeleteRows = false;
-            this.dtgvHoiVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvHoiVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tbl_DSHoiVien.AllowUserToAddRows = false;
+            this.tbl_DSHoiVien.AllowUserToDeleteRows = false;
+            this.tbl_DSHoiVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tbl_DSHoiVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_hv,
             this.hoten});
-            this.dtgvHoiVien.Location = new System.Drawing.Point(5, 83);
-            this.dtgvHoiVien.Name = "dtgvHoiVien";
-            this.dtgvHoiVien.ReadOnly = true;
-            this.dtgvHoiVien.Size = new System.Drawing.Size(257, 353);
-            this.dtgvHoiVien.TabIndex = 0;
+            this.tbl_DSHoiVien.Location = new System.Drawing.Point(5, 83);
+            this.tbl_DSHoiVien.Name = "tbl_DSHoiVien";
+            this.tbl_DSHoiVien.ReadOnly = true;
+            this.tbl_DSHoiVien.Size = new System.Drawing.Size(257, 353);
+            this.tbl_DSHoiVien.TabIndex = 0;
             // 
             // groupBoxHV
             // 
@@ -1238,7 +1243,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHV)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvHoiVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbl_DSHoiVien)).EndInit();
             this.groupBoxHV.ResumeLayout(false);
             this.groupBoxHV.PerformLayout();
             this.tabCtrl.ResumeLayout(false);
@@ -1337,7 +1342,7 @@
         private System.Windows.Forms.Button btnSuaHV;
         private System.Windows.Forms.Button btnThemHV;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dtgvHoiVien;
+        private System.Windows.Forms.DataGridView tbl_DSHoiVien;
         private System.Windows.Forms.GroupBox groupBoxHV;
         private System.Windows.Forms.TextBox txtMaHV;
         private System.Windows.Forms.Label label27;

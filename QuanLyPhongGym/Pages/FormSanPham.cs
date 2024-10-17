@@ -7,13 +7,13 @@ namespace QuanLyPhongGym.Pages
 {
     public partial class FormSanPham : Form
     {
-        private SanPhamCTL sanPhamCTL = new SanPhamCTL();
-        private SanPhamDTO sp = new SanPhamDTO();
+        //private SanPhamCTL sanPhamCTL = new SanPhamCTL();
+        //private SanPhamDTO sp = new SanPhamDTO();
         private DataGridViewRow curRow;
         private bool isAnotherImage = false;
         private string imgLoc;
 
-        public FormSanPham(DataGridViewRow curRow)
+        public FormSanPham(DataGridViewRow curRow, string IdSP)
         {
             InitializeComponent();
             this.curRow = curRow;
