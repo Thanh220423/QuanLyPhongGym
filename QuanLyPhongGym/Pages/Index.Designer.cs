@@ -44,7 +44,7 @@
             this.hangsxtb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soluongtb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loaitb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgvSanPham = new System.Windows.Forms.DataGridView();
+            this.tbl_SanPham = new System.Windows.Forms.DataGridView();
             this.id_sp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loai = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,7 +132,7 @@
             this.txtSoLuongSP = new System.Windows.Forms.TextBox();
             this.txtTenSP = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvSanPham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbl_SanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvThietBi)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxSP)).BeginInit();
@@ -281,12 +281,12 @@
             this.loaitb.HeaderText = "Loại";
             this.loaitb.Name = "loaitb";
             // 
-            // dtgvSanPham
+            // tbl_SanPham
             // 
-            this.dtgvSanPham.AllowUserToAddRows = false;
-            this.dtgvSanPham.AllowUserToDeleteRows = false;
-            this.dtgvSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tbl_SanPham.AllowUserToAddRows = false;
+            this.tbl_SanPham.AllowUserToDeleteRows = false;
+            this.tbl_SanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tbl_SanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_sp,
             this.ten,
             this.loai,
@@ -296,10 +296,10 @@
             this.trongluong,
             this.hangsx,
             this.tinhtrang});
-            this.dtgvSanPham.Location = new System.Drawing.Point(2, 182);
-            this.dtgvSanPham.Name = "dtgvSanPham";
-            this.dtgvSanPham.Size = new System.Drawing.Size(678, 254);
-            this.dtgvSanPham.TabIndex = 10;
+            this.tbl_SanPham.Location = new System.Drawing.Point(2, 182);
+            this.tbl_SanPham.Name = "tbl_SanPham";
+            this.tbl_SanPham.Size = new System.Drawing.Size(678, 254);
+            this.tbl_SanPham.TabIndex = 10;
             // 
             // id_sp
             // 
@@ -1160,7 +1160,7 @@
             this.tabPage2.Controls.Add(this.txtSearchSP);
             this.tabPage2.Controls.Add(this.lblTinhTrangSP);
             this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.dtgvSanPham);
+            this.tabPage2.Controls.Add(this.tbl_SanPham);
             this.tabPage2.Controls.Add(this.txtDonGiaSP);
             this.tabPage2.Controls.Add(this.picBoxSP);
             this.tabPage2.Controls.Add(this.label38);
@@ -1228,7 +1228,7 @@
             this.Text = "Index";
             this.Load += new System.EventHandler(this.Index_Load);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvSanPham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbl_SanPham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvThietBi)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxSP)).EndInit();
@@ -1274,7 +1274,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hangsxtb;
         private System.Windows.Forms.DataGridViewTextBoxColumn soluongtb;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaitb;
-        private System.Windows.Forms.DataGridView dtgvSanPham;
+        private System.Windows.Forms.DataGridView tbl_SanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_sp;
         private System.Windows.Forms.DataGridViewTextBoxColumn ten;
         private System.Windows.Forms.DataGridViewTextBoxColumn loai;

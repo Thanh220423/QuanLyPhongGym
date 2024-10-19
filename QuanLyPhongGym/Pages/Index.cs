@@ -18,7 +18,7 @@ namespace QuanLyPhongGym.Pages
         private DBController _dbController = new DBController();
         private CmmFunc _cmmFunc = new CmmFunc();
         private List<HoiVienModel> _DS_HoiVien;
-        private ArrayList dsSanPham;
+        private List<SanPhamModel> _DS_SanPham;
         private ArrayList dsThietBi;
         private string imgLoc;
         private bool isAnotherImage = false;
@@ -110,8 +110,31 @@ namespace QuanLyPhongGym.Pages
 
         private void load_SanPham(string keyword = null)
         {
-            if (dsSanPham != null)
-                dsSanPham.Clear();
+            //tbl_SanPham.Columns[0].HeaderText = "Mã sản phẩm";
+            //tbl_SanPham.Columns[1].HeaderText = "Tên";
+            //tbl_SanPham.Columns[2].HeaderText = "Loại";
+            //tbl_SanPham.Columns[3].HeaderText = "Ngày nhập";
+            //tbl_SanPham.Columns[4].HeaderText = "Số lượng";
+            //tbl_SanPham.Columns[5].HeaderText = "Đơn giá";
+            //tbl_SanPham.Columns[6].HeaderText = "Trọng lượng";
+            //tbl_SanPham.Columns[7].HeaderText = "Hãng sản xuất";
+            //tbl_SanPham.Columns[8].HeaderText = "Tình trạng";
+
+            //tbl_SanPham.Rows.Clear();
+            //_DS_SanPham = _dbController.SelectAll<SanPhamModel>(new SanPhamModel());
+            //if (_DS_SanPham != null)
+            //{
+            //    foreach (SanPhamModel hoiVien in _DS_SanPham)
+            //    {
+            //        // Tạo một mảng các giá trị cho từng cột
+            //        string[] row = new string[]
+            //        {
+            //            //hoiVien.,
+            //            //hoiVien.HoTen
+            //        };
+            //        tbl_DSHoiVien.Rows.Add(row);
+            //    }
+            //}
 
             //dsSanPham = sanPhamCTL.getDsSanPham(keyword);
             //dtgvSanPham.DataSource = dsSanPham;
@@ -177,7 +200,7 @@ namespace QuanLyPhongGym.Pages
 
         private void getCurrentRowSPInfo()
         {
-            DataGridViewRow row = dtgvSanPham.CurrentRow;
+            DataGridViewRow row = tbl_SanPham.CurrentRow;
             //sanPhamDTO.ID_SP = row.Cells["id_sp"].Value.ToString();
             //sanPhamDTO.Ten = row.Cells["ten"].Value.ToString();
             //sanPhamDTO.Loai = row.Cells["loai"].Value.ToString();
@@ -269,6 +292,9 @@ namespace QuanLyPhongGym.Pages
             load_HoiVien();
             load_SanPham();
             load_ThietBi();
+
+            HoiVienModel hoiVienModel = new HoiVienModel();
+            hoiVienModel.
         }
 
         private void tabCtrl_DrawItem(object sender, DrawItemEventArgs e)
@@ -416,13 +442,13 @@ namespace QuanLyPhongGym.Pages
 
         private void dtgvSanPham_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dtgvSanPham.CurrentRow;
+            DataGridViewRow row = tbl_SanPham.CurrentRow;
             getSPRowToTxtBOX(row);
         }
 
         private void btnThemSP_Click(object sender, EventArgs e)
         {
-            DataGridViewRow lastRow = dtgvSanPham.Rows[dtgvSanPham.Rows.Count - 1];
+            DataGridViewRow lastRow = tbl_SanPham.Rows[tbl_SanPham.Rows.Count - 1];
             string lastRowID = lastRow.Cells["id_sp"].Value.ToString();
             FormSanPham fadd = new FormSanPham(lastRow, lastRowID);
             fadd.ShowDialog();
@@ -452,7 +478,7 @@ namespace QuanLyPhongGym.Pages
 
         private void btnSuaSP_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = dtgvSanPham.CurrentRow;
+            DataGridViewRow curRow = tbl_SanPham.CurrentRow;
             FormSanPham fEdit = new FormSanPham(curRow, null);
             fEdit.ShowDialog();
             load_SanPham();

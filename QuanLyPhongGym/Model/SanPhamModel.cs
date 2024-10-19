@@ -7,7 +7,7 @@ namespace QuanLyPhongGym.Model
     public class SanPhamModel : DBController
     {
         [PrimaryKey]
-        public string ID { get; set; }
+        public string MaSP { get; set; }
         public string Ten { get; set; }
         public string Loai { get; set; }
         public DateTime? NgayNhap { get; set; }

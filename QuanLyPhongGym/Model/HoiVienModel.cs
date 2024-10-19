@@ -8,7 +8,6 @@ namespace QuanLyPhongGym.Model
     public class HoiVienModel : DBController
     {
         [PrimaryKey]
-        public string ID { get; set; }
         public string MaHV { get; set; }
         public string HoTen { get; set; }
         public string GioiTinh { get; set; }

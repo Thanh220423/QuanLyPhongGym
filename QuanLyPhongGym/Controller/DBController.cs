@@ -1346,6 +1346,31 @@ namespace QuanLyPhongGym.Controller
             return retValue;
         }
 
+        public string CreateStrNewID(string StrCode, ControllerModel obj)
+        {
+            try
+            {
+                Type type = obj.GetType();
+                SqlParameter retPara = new SqlParameter();
+                retPara.ParameterName = "@StrNewID";
+                retPara.DbType = DbType.String;
+                retPara.Size = 255;
+                retPara.Value = string.Empty;
+                retPara.Direction = ParameterDirection.InputOutput;
+
+                Cmm.CommandType = CommandType.StoredProcedure;
+                Cmm.Parameters.Add(retPara);
+                Cmm.Parameters.AddWithValue("@Key", StrCode);
+                Cmm.Parameters.AddWithValue("@TableName", obj.GetTableName(type));
+                Cmm.ExecuteNonQuery();
+                return (retPara.Value + string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
         public bool ReturnBool(string functionName, List<SqlParameter> retParaList = null, string strKeyConString = "")
         {
             bool retValue = false;

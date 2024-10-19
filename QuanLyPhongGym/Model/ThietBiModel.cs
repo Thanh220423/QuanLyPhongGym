@@ -6,7 +6,7 @@ namespace QuanLyPhongGym.Model
     public class ThietBiModel : DBController
     {
         [PrimaryKey]
-        public string ID { get; set; }
+        public string MaTB { get; set; }
         public string Ten { get; set; }
         public string Loai { get; set; }
         public int? SoLuong { get; set; }
