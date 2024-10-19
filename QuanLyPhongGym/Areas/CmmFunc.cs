@@ -65,19 +65,6 @@ namespace QuanLyPhongGym.Areas
             return retTable;
         }
 
-        public static ExpandoObject CreateExpandoObject(params (string Key, object Value)[] properties)
-        {
-            var expando = new ExpandoObject();
-            var dictionary = (IDictionary<string, object>)expando;
-
-            foreach (var (key, value) in properties)
-            {
-                dictionary[key] = value;
-            }
-
-            return expando;
-        }
-
         public bool FieldRequire(List<FieldRequireValidate> lstRequire)
         {
             foreach (FieldRequireValidate obj in lstRequire)
