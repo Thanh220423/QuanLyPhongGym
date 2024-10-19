@@ -1,4 +1,9 @@
-﻿using System;
+﻿using QuanLyPhongGym.Areas;
+using QuanLyPhongGym.Controller;
+using QuanLyPhongGym.Model;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -7,24 +12,41 @@ namespace QuanLyPhongGym.Pages
 {
     public partial class FormHoiVien : Form
     {
-        //private HoiVienCTL hoiVienCTL = new HoiVienCTL();
-        //private HoiVienDTO hv = new HoiVienDTO();
-        private int iLastRowID;
-        private string imgLoc;
+        private DBController _dbController = new DBController();
+        private CmmFunc _cmmFunc = new CmmFunc();
+        private string _ImgHVPath;
+        private string _MaHV;
 
-        public FormHoiVien(string lastRowID)
+        public FormHoiVien(string MaHV)
         {
             InitializeComponent();
-            cmbGoiTap.SelectedIndex = 0;
-            cmbGioiTinh.SelectedIndex = 0;
-            string sub = lastRowID.Substring(Math.Max(0, lastRowID.Length - 3));
-            iLastRowID = Int32.Parse(sub);
-            DateTime dt = DateTime.Now;
-            dt = dt.AddMonths(1);
-            lblHetHan.Text = dt.ToString("d/M/yyyy", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(MaHV))
+            {
+                _MaHV = MaHV;
+                HoiVienModel hoiVien = new HoiVienModel { MaHV = MaHV };
+                hoiVien = _dbController.Select<HoiVienModel>(hoiVien);
+                if (hoiVien != null)
+                {
+                    txt_HoTen.Text = hoiVien.HoTen;
+                    txt_SDT.Text = hoiVien.SDT;
+                    _cmmFunc.SelectCbbByText(cbb_GioiTinh, hoiVien.GioiTinh);
+                    _cmmFunc.SelectCbbByText(cbb_GoiTap, hoiVien.GoiTap);
+                    lbl_HetHan.Text = hoiVien.NgayHetHan.HasValue ? hoiVien.NgayHetHan.Value.ToString("dd/MM/yyyy") : string.Empty;
+
+                    if (hoiVien.HinhAnh != null && hoiVien.HinhAnh.Length > 0)
+                    {
+                        MemoryStream image = new MemoryStream(hoiVien.HinhAnh);
+                        picbox_HV.Image = Image.FromStream(image);
+                    }
+                    else
+                        picbox_HV.Image = null;
+                }
+            }
+            else
+                ClearField();
         }
 
-        private void ClearTextBoxes()
+        private void ClearField()
         {
             Action<Control.ControlCollection> func = null;
 
@@ -37,57 +59,69 @@ namespace QuanLyPhongGym.Pages
                         func(control.Controls);
             };
             func(Controls);
+            picbox_HV.ImageLocation = null;
+            cbb_GoiTap.SelectedIndex = 0;
+            cbb_GioiTinh.SelectedIndex = 0;
+            lbl_HetHan.Text = DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
-        private Byte[] ImageToByteArray(string imgLocation)
+        private Byte[] ImageToByteArray(string _ImgHV)
         {
             Byte[] img = null;
-            FileStream fs = new FileStream(imgLocation, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(_ImgHV, FileMode.Open, FileAccess.Read);
             BinaryReader br = new BinaryReader(fs);
             img = br.ReadBytes((int)fs.Length);
 
             return img;
         }
 
-        private void LayThongTinHoiVien()
-        {
-            //hv.HoTen = txtHoTen.Text;
-            //hv.GioiTinh = cmbGioiTinh.Text;
-            //hv.SDT = txtSDT.Text;
-            //hv.GoiTap = cmbGoiTap.Text;
-            //hv.NgayHetHan = DateTime.Now;
-            //iLastRowID++;
-            //hv.ID_HV = "KH00" + iLastRowID.ToString();
-
-            //if (picBoxHV.Image != null)
-            //    hv.HinhAnh = ImageToByteArray(imgLoc);
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
+        private void btn_Luu_Click(object sender, EventArgs e)
         {
             try
             {
-                LayThongTinHoiVien();
-                //hoiVienCTL.HoiVien = hv;
-                //hoiVienCTL.insert();
+                HoiVienModel hoiVien = null;
+                if (!string.IsNullOrEmpty(_MaHV))
+                {
+                    hoiVien = new HoiVienModel { MaHV = _MaHV };
+                    hoiVien = _dbController.Select<HoiVienModel>(hoiVien);
+                }
+                else
+                {
+                    hoiVien = new HoiVienModel();
+                    hoiVien.MaHV = _dbController.CreateStrNewID("KH", hoiVien);
+                }
 
-                MessageBox.Show("Thêm THÀNH CÔNG!", "Thông báo");
+                hoiVien.HoTen = txt_HoTen.Text;
+                hoiVien.GioiTinh = cbb_GioiTinh.Text;
+                hoiVien.SDT = txt_SDT.Text;
+                hoiVien.GoiTap = cbb_GoiTap.Text;
+
+                DateTime date;
+                DateTime.TryParseExact(lbl_HetHan.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+                hoiVien.NgayHetHan = date;
+
+                if (picbox_HV.Image != null && _ImgHVPath != null)
+                    hoiVien.HinhAnh = ImageToByteArray(_ImgHVPath);
+
+                if (!string.IsNullOrEmpty(_MaHV))
+                    _dbController.Update(hoiVien, new List<string> { "HoTen", "GioiTinh", "SDT", "GoiTap", "NgayHetHan", "HinhAnh" });
+                else
+                    _dbController.Insert(hoiVien);
+
+                if (MessageBox.Show(!string.IsNullOrEmpty(_MaHV) ? "Cập nhật THÀNH CÔNG!" : "Thêm THÀNH CÔNG!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    this.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Bạn chưa thêm ảnh!", "Thông báo");
+                MessageBox.Show(ex.ToString(), "Thông báo");
             }
         }
 
-        private void btnXoaHet_Click(object sender, EventArgs e)
-        {
-            ClearTextBoxes();
-        }
 
-        private void cmbGoiTap_TextChanged(object sender, EventArgs e)
+        private void cbb_GoiTap_TextChanged(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            switch (cmbGoiTap.Text)
+            switch (cbb_GoiTap.Text)
             {
                 case "1 tháng":
                     dt = dt.AddMonths(1);
@@ -102,7 +136,7 @@ namespace QuanLyPhongGym.Pages
                     dt = dt.AddMonths(7);
                     break;
             }
-            lblHetHan.Text = dt.ToString("d/M/yyyy", CultureInfo.InvariantCulture);
+            lbl_HetHan.Text = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
         private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
@@ -110,7 +144,7 @@ namespace QuanLyPhongGym.Pages
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void picBoxHV_Click(object sender, EventArgs e)
+        private void picbox_HV_Click(object sender, EventArgs e)
         {
             try
             {
@@ -119,14 +153,19 @@ namespace QuanLyPhongGym.Pages
                 dlg.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    imgLoc = dlg.FileName;
-                    picBoxHV.ImageLocation = imgLoc;
+                    _ImgHVPath = dlg.FileName;
+                    picbox_HV.ImageLocation = _ImgHVPath;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btn_RefeshField_Click(object sender, EventArgs e)
+        {
+            ClearField();
         }
     }
 }

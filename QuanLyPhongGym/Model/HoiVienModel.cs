@@ -3,7 +3,6 @@ using System;
 
 namespace QuanLyPhongGym.Model
 {
-    [Select("WF_DCMOP_Account_SelectByCustomerId", Cols = "ID,MaHV")]
     [Table("HoiVien")]
     public class HoiVienModel : DBController
     {
@@ -14,6 +13,6 @@ namespace QuanLyPhongGym.Model
         public string SDT { get; set; }
         public DateTime? NgayHetHan { get; set; }
         public string GoiTap { get; set; }
-        public bool? HinhAnh { get; set; }
+        public byte[] HinhAnh { get; set; }
     }
 }

@@ -1350,6 +1350,7 @@ namespace QuanLyPhongGym.Controller
         {
             try
             {
+                Open();
                 Type type = obj.GetType();
                 SqlParameter retPara = new SqlParameter();
                 retPara.ParameterName = "@StrNewID";
@@ -1358,6 +1359,7 @@ namespace QuanLyPhongGym.Controller
                 retPara.Value = string.Empty;
                 retPara.Direction = ParameterDirection.InputOutput;
 
+                Cmm.CommandText = "QuanLyPhongGym_CreateStringNewID";
                 Cmm.CommandType = CommandType.StoredProcedure;
                 Cmm.Parameters.Add(retPara);
                 Cmm.Parameters.AddWithValue("@Key", StrCode);
@@ -1368,6 +1370,10 @@ namespace QuanLyPhongGym.Controller
             catch (Exception ex)
             {
                 return string.Empty;
+            }
+            finally
+            {
+                Close();
             }
         }
 

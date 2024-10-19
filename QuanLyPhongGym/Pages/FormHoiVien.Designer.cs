@@ -29,38 +29,38 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbGioiTinh = new System.Windows.Forms.ComboBox();
-            this.btnXoaHet = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.lblHetHan = new System.Windows.Forms.Label();
-            this.cmbGoiTap = new System.Windows.Forms.ComboBox();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.cbb_GioiTinh = new System.Windows.Forms.ComboBox();
+            this.btn_RefeshField = new System.Windows.Forms.Button();
+            this.btn_Luu = new System.Windows.Forms.Button();
+            this.lbl_HetHan = new System.Windows.Forms.Label();
+            this.cbb_GoiTap = new System.Windows.Forms.ComboBox();
+            this.txt_SDT = new System.Windows.Forms.TextBox();
+            this.txt_HoTen = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.picBoxHV = new System.Windows.Forms.PictureBox();
+            this.picbox_HV = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxHV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_HV)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cmbGioiTinh);
-            this.groupBox1.Controls.Add(this.btnXoaHet);
-            this.groupBox1.Controls.Add(this.btnLuu);
-            this.groupBox1.Controls.Add(this.lblHetHan);
-            this.groupBox1.Controls.Add(this.cmbGoiTap);
-            this.groupBox1.Controls.Add(this.txtSDT);
-            this.groupBox1.Controls.Add(this.txtHoTen);
+            this.groupBox1.Controls.Add(this.cbb_GioiTinh);
+            this.groupBox1.Controls.Add(this.btn_RefeshField);
+            this.groupBox1.Controls.Add(this.btn_Luu);
+            this.groupBox1.Controls.Add(this.lbl_HetHan);
+            this.groupBox1.Controls.Add(this.cbb_GoiTap);
+            this.groupBox1.Controls.Add(this.txt_SDT);
+            this.groupBox1.Controls.Add(this.txt_HoTen);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.picBoxHV);
+            this.groupBox1.Controls.Add(this.picbox_HV);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(23, 12);
             this.groupBox1.Name = "groupBox1";
@@ -69,78 +69,81 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "THÊM HỘI VIÊN";
             // 
-            // cmbGioiTinh
+            // cbb_GioiTinh
             // 
-            this.cmbGioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGioiTinh.FormattingEnabled = true;
-            this.cmbGioiTinh.Items.AddRange(new object[] {
+            this.cbb_GioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_GioiTinh.FormattingEnabled = true;
+            this.cbb_GioiTinh.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cmbGioiTinh.Location = new System.Drawing.Point(130, 271);
-            this.cmbGioiTinh.Name = "cmbGioiTinh";
-            this.cmbGioiTinh.Size = new System.Drawing.Size(121, 24);
-            this.cmbGioiTinh.TabIndex = 3;
+            this.cbb_GioiTinh.Location = new System.Drawing.Point(130, 271);
+            this.cbb_GioiTinh.Name = "cbb_GioiTinh";
+            this.cbb_GioiTinh.Size = new System.Drawing.Size(121, 24);
+            this.cbb_GioiTinh.TabIndex = 3;
             // 
-            // btnXoaHet
+            // btn_RefeshField
             // 
-            this.btnXoaHet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaHet.Location = new System.Drawing.Point(236, 398);
-            this.btnXoaHet.Name = "btnXoaHet";
-            this.btnXoaHet.Size = new System.Drawing.Size(75, 28);
-            this.btnXoaHet.TabIndex = 6;
-            this.btnXoaHet.Text = "Xóa hết";
-            this.btnXoaHet.UseVisualStyleBackColor = true;
+            this.btn_RefeshField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RefeshField.Location = new System.Drawing.Point(236, 398);
+            this.btn_RefeshField.Name = "btn_RefeshField";
+            this.btn_RefeshField.Size = new System.Drawing.Size(75, 28);
+            this.btn_RefeshField.TabIndex = 6;
+            this.btn_RefeshField.Text = "Làm mới";
+            this.btn_RefeshField.UseVisualStyleBackColor = true;
+            this.btn_RefeshField.Click += new System.EventHandler(this.btn_RefeshField_Click);
             // 
-            // btnLuu
+            // btn_Luu
             // 
-            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuu.Location = new System.Drawing.Point(148, 398);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(75, 28);
-            this.btnLuu.TabIndex = 5;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btn_Luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Luu.Location = new System.Drawing.Point(148, 398);
+            this.btn_Luu.Name = "btn_Luu";
+            this.btn_Luu.Size = new System.Drawing.Size(75, 28);
+            this.btn_Luu.TabIndex = 5;
+            this.btn_Luu.Text = "Lưu";
+            this.btn_Luu.UseVisualStyleBackColor = true;
+            this.btn_Luu.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
-            // lblHetHan
+            // lbl_HetHan
             // 
-            this.lblHetHan.AutoSize = true;
-            this.lblHetHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHetHan.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblHetHan.Location = new System.Drawing.Point(126, 352);
-            this.lblHetHan.Name = "lblHetHan";
-            this.lblHetHan.Size = new System.Drawing.Size(50, 24);
-            this.lblHetHan.TabIndex = 9;
-            this.lblHetHan.Text = "date";
+            this.lbl_HetHan.AutoSize = true;
+            this.lbl_HetHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_HetHan.ForeColor = System.Drawing.Color.MediumBlue;
+            this.lbl_HetHan.Location = new System.Drawing.Point(126, 352);
+            this.lbl_HetHan.Name = "lbl_HetHan";
+            this.lbl_HetHan.Size = new System.Drawing.Size(50, 24);
+            this.lbl_HetHan.TabIndex = 9;
+            this.lbl_HetHan.Text = "date";
             // 
-            // cmbGoiTap
+            // cbb_GoiTap
             // 
-            this.cmbGoiTap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGoiTap.FormattingEnabled = true;
-            this.cmbGoiTap.Items.AddRange(new object[] {
+            this.cbb_GoiTap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_GoiTap.FormattingEnabled = true;
+            this.cbb_GoiTap.Items.AddRange(new object[] {
             "1 tháng",
             "3 tháng",
             "VIP",
             "Thường"});
-            this.cmbGoiTap.Location = new System.Drawing.Point(130, 313);
-            this.cmbGoiTap.Name = "cmbGoiTap";
-            this.cmbGoiTap.Size = new System.Drawing.Size(121, 24);
-            this.cmbGoiTap.TabIndex = 4;
+            this.cbb_GoiTap.Location = new System.Drawing.Point(130, 313);
+            this.cbb_GoiTap.Name = "cbb_GoiTap";
+            this.cbb_GoiTap.Size = new System.Drawing.Size(121, 24);
+            this.cbb_GoiTap.TabIndex = 4;
+            this.cbb_GoiTap.TextChanged += new System.EventHandler(this.cbb_GoiTap_TextChanged);
             // 
-            // txtSDT
+            // txt_SDT
             // 
-            this.txtSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(130, 232);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(181, 22);
-            this.txtSDT.TabIndex = 2;
+            this.txt_SDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SDT.Location = new System.Drawing.Point(130, 232);
+            this.txt_SDT.Name = "txt_SDT";
+            this.txt_SDT.Size = new System.Drawing.Size(181, 22);
+            this.txt_SDT.TabIndex = 2;
             // 
-            // txtHoTen
+            // txt_HoTen
             // 
-            this.txtHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoTen.Location = new System.Drawing.Point(130, 193);
-            this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(181, 22);
-            this.txtHoTen.TabIndex = 1;
+            this.txt_HoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_HoTen.Location = new System.Drawing.Point(130, 193);
+            this.txt_HoTen.Name = "txt_HoTen";
+            this.txt_HoTen.Size = new System.Drawing.Size(181, 22);
+            this.txt_HoTen.TabIndex = 1;
             // 
             // label5
             // 
@@ -192,15 +195,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Họ tên:";
             // 
-            // picBoxHV
+            // picbox_HV
             // 
-            this.picBoxHV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxHV.Location = new System.Drawing.Point(69, 41);
-            this.picBoxHV.Name = "picBoxHV";
-            this.picBoxHV.Size = new System.Drawing.Size(205, 124);
-            this.picBoxHV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBoxHV.TabIndex = 10;
-            this.picBoxHV.TabStop = false;
+            this.picbox_HV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbox_HV.Location = new System.Drawing.Point(69, 41);
+            this.picbox_HV.Name = "picbox_HV";
+            this.picbox_HV.Size = new System.Drawing.Size(205, 124);
+            this.picbox_HV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picbox_HV.TabIndex = 10;
+            this.picbox_HV.TabStop = false;
+            this.picbox_HV.Click += new System.EventHandler(this.picbox_HV_Click);
             // 
             // FormHoiVien
             // 
@@ -212,7 +216,7 @@
             this.Text = "FormHoiVien";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxHV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_HV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -220,18 +224,18 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmbGioiTinh;
-        private System.Windows.Forms.Button btnXoaHet;
-        private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.Label lblHetHan;
-        private System.Windows.Forms.ComboBox cmbGoiTap;
-        private System.Windows.Forms.TextBox txtSDT;
-        private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.ComboBox cbb_GioiTinh;
+        private System.Windows.Forms.Button btn_RefeshField;
+        private System.Windows.Forms.Button btn_Luu;
+        private System.Windows.Forms.Label lbl_HetHan;
+        private System.Windows.Forms.ComboBox cbb_GoiTap;
+        private System.Windows.Forms.TextBox txt_SDT;
+        private System.Windows.Forms.TextBox txt_HoTen;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox picBoxHV;
+        private System.Windows.Forms.PictureBox picbox_HV;
     }
 }

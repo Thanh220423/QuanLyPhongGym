@@ -20,6 +20,7 @@ using System.Web;
 using OfficeOpenXml;
 using System.Web.UI;
 using QuanLyPhongGym.Pages;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyPhongGym.Areas
 {
@@ -526,6 +527,18 @@ namespace QuanLyPhongGym.Areas
             return retValue;
         }
 
+        public void SelectCbbByText(System.Windows.Forms.ComboBox cbb, string text)
+        {
+            try {
+                int index = cbb.FindStringExact(text);
+                cbb.SelectedIndex = index;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "File: QuanLyPhongGym.Areas.CmmFunc => SelectCbbByText");
+            }
+        }
+
         public void ExportExcelByAPI(string strFileTemplate, List<DataTable> DataTables, string Options = "", string extension = ".xlsx", string fileName = "", HttpContext context = null, bool IsLinkUrl = true, int LanguageId = 1066)
         {
             try
@@ -919,42 +932,6 @@ namespace QuanLyPhongGym.Areas
             sb = sb.Replace('Đ', 'D');
             sb = sb.Replace('đ', 'd');
             return (sb.ToString().Normalize(NormalizationForm.FormD));
-        }
-
-        /// <summary>
-        /// type default = success, type = 1 Warning, type = 2 error, type = 3 info
-        /// </summary>
-        public void Notify(string Content, int type = 0, Page page = null)
-        {
-            var TypeNotify = "success";
-            if (type == 1)
-            {
-                TypeNotify = "warn";
-            }
-            else if (type == 2)
-            {
-                TypeNotify = "error";
-            }
-            else if (type == 3)
-            {
-                TypeNotify = "info";
-            }
-
-            page.Controls.Add(new LiteralControl(@"<script>$.notify('" + Content + @"','" + TypeNotify + @"');</script>"));
-        }
-
-
-        /// <summary>
-        /// isActive = true Loading
-        /// </summary>
-        public void Loading(bool isActive = false, Page page = null)
-        {
-            var strHTML = "";
-            if (isActive)
-                strHTML = @"$('#isLoading').show()";
-            else
-                strHTML = @"$('#isLoading').hide()";
-            page.Controls.Add(new LiteralControl(@"<script>" + strHTML + @";</script>"));
         }
 
         /// <summary>

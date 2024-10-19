@@ -16,6 +16,6 @@ namespace QuanLyPhongGym.Model
         public string TrongLuong { get; set; }
         public string HangSX { get; set; }
         public string TinhTrang { get; set; }
-        public bool? HinhAnh { get; set; }
+        public byte[] HinhAnh { get; set; }
     }
 }
