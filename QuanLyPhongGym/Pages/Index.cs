@@ -19,8 +19,6 @@ namespace QuanLyPhongGym.Pages
         private List<HoiVienModel> _DS_HoiVien;
         private List<SanPhamModel> _DS_SanPham;
         private List<ThietBiModel> _DS_ThietBi;
-        private string imgLoc;
-        private bool isAnotherImage = false;
 
         public Index()
         {
@@ -28,239 +26,7 @@ namespace QuanLyPhongGym.Pages
             tab_Ctrl.DrawItem += new DrawItemEventHandler(tabCtrl_DrawItem);
         }
 
-        // Search boxes placeholders
-        #region Search
-        private void txt_HoiVienSearch_Enter(object sender, EventArgs e)
-        {
-            if (txt_SearchHV.Text == "Search...")
-            {
-                txt_SearchHV.Text = "";
-                txt_SearchHV.ForeColor = Color.Black;
-            }
-        }
-
-        private void txt_HoiVienSearch_Leave(object sender, EventArgs e)
-        {
-            if (txt_SearchHV.Text == "")
-            {
-                txt_SearchHV.Text = "Search...";
-                txt_SearchHV.ForeColor = Color.Gray;
-            }
-        }
-
-        private void btn_SearchHV_Click(object sender, EventArgs e)
-        {
-            load_HoiVien(txt_SearchHV.Text);
-        }
-
-        private void txt_SearchHV_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                load_HoiVien(txt_SearchHV.Text);
-        }
-
-        private void txtSearchSP_Enter(object sender, EventArgs e)
-        {
-            if (txt_SearchSP.Text == "Search...")
-            {
-                txt_SearchSP.Text = "";
-                txt_SearchSP.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtSearchSP_Leave(object sender, EventArgs e)
-        {
-            if (txt_SearchSP.Text == "")
-            {
-                txt_SearchSP.Text = "Search...";
-                txt_SearchSP.ForeColor = Color.Gray;
-            }
-        }
-
-        private void txtSearchTB_Enter(object sender, EventArgs e)
-        {
-            if (txt_SearchTB.Text == "Search...")
-            {
-                txt_SearchTB.Text = "";
-                txt_SearchTB.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtSearchTB_Leave(object sender, EventArgs e)
-        {
-            if (txt_SearchTB.Text == "")
-            {
-                txt_SearchTB.Text = "Search...";
-                txt_SearchTB.ForeColor = Color.Gray;
-            }
-        }
-        #endregion
-
-        // Support functions
-        private void load_HoiVien(string keyword = null)
-        {
-            tbl_HoiVien.Rows.Clear();
-            _DS_HoiVien = _dbController.SelectAll<HoiVienModel>(new HoiVienModel());
-            if (!string.IsNullOrEmpty(keyword) && keyword != "Search...")
-            {
-                string strKeyword = keyword.ToLower().Trim();
-                _DS_HoiVien = _DS_HoiVien.Where(item =>
-                        item.MaHV.ToLower().Contains(strKeyword)
-                    ||
-                        item.HoTen.ToLower().Contains(strKeyword)
-                    ||
-                        item.SDT.ToLower().Contains(strKeyword)
-                ).ToList();
-            }
-
-            if (_DS_HoiVien != null)
-            {
-                foreach (HoiVienModel hoiVien in _DS_HoiVien)
-                {
-                    // Tạo một mảng các giá trị cho từng cột
-                    string[] row = new string[]
-                    {
-                        hoiVien.MaHV,
-                        hoiVien.HoTen
-                    };
-                    tbl_HoiVien.Rows.Add(row);
-                }
-            }
-        }
-
-        private void load_SanPham(string keyword = null)
-        {
-            tbl_SanPham.Rows.Clear();
-            _DS_SanPham = _dbController.SelectAll<SanPhamModel>(new SanPhamModel());
-            if (_DS_SanPham != null)
-            {
-                foreach (SanPhamModel sanPham in _DS_SanPham)
-                {
-                    // Tạo một mảng các giá trị cho từng cột
-                    string[] row = new string[]
-                    {
-                        sanPham.MaSP,
-                        sanPham.Ten,
-                        sanPham.Loai,
-                        sanPham.NgayNhap.HasValue ? sanPham.NgayNhap.Value.ToString("dd-MM-yyyy HH:mm") : string.Empty,
-                        sanPham.SoLuong.HasValue ? sanPham.SoLuong.ToString() : string.Empty,
-                        sanPham.DonGia.HasValue ? sanPham.DonGia.Value.ToString("N2", new CultureInfo("de-DE")) : string.Empty,
-                        sanPham.TrongLuong,
-                        sanPham.HangSX,
-                        sanPham.TinhTrang
-                    };
-                    tbl_SanPham.Rows.Add(row);
-                }
-            }
-        }
-
-        private void load_ThietBi(string keyword = null)
-        {
-            tbl_ThietBi.Rows.Clear();
-            _DS_ThietBi = _dbController.SelectAll<ThietBiModel>(new ThietBiModel());
-            if (_DS_ThietBi != null)
-            {
-                foreach (ThietBiModel thietBi in _DS_ThietBi)
-                {
-                    // Tạo một mảng các giá trị cho từng cột
-                    string[] row = new string[]
-                    {
-                        thietBi.MaTB,
-                        thietBi.Ten,
-                        thietBi.Loai,
-                        thietBi.SoLuong.HasValue ? thietBi.SoLuong.ToString() : string.Empty,
-                        thietBi.SoLuongHu.HasValue ? thietBi.SoLuongHu.ToString() : string.Empty,
-                        thietBi.TinhTrang,
-                        thietBi.HangSX,
-                        thietBi.GhiChu,
-
-                    };
-                    tbl_ThietBi.Rows.Add(row);
-                }
-            }
-        }
-
-        public Byte[] ImageToByteArray(string imgLocation)
-        {
-            Byte[] img = null;
-            FileStream fs = new FileStream(imgLocation, FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            img = br.ReadBytes((int)fs.Length);
-            return img;
-        }
-
-        private void getCurrentRowSPInfo()
-        {
-            DataGridViewRow row = tbl_SanPham.CurrentRow;
-            //sanPhamDTO.ID_SP = row.Cells["id_sp"].Value.ToString();
-            //sanPhamDTO.Ten = row.Cells["ten"].Value.ToString();
-            //sanPhamDTO.Loai = row.Cells["loai"].Value.ToString();
-            //sanPhamDTO.NgayNhap = (DateTime)row.Cells["ngaynhap"].Value;
-            //sanPhamDTO.SoLuong = Convert.ToInt32(row.Cells["soluong"].Value);
-            //sanPhamDTO.DonGia = row.Cells["dongia"].Value.ToString();
-            //sanPhamDTO.TrongLuong = row.Cells["trongluong"].Value.ToString();
-            //sanPhamDTO.HangSX = row.Cells["hangsx"].Value.ToString();
-            //sanPhamDTO.TinhTrang = row.Cells["tinhtrang"].Value.ToString();
-            //sanPhamDTO.HinhAnh = (Byte[])row.Cells["hinhanh"].Value;
-        }
-
-        private void getCurrentRowTBInfo()
-        {
-            DataGridViewRow row = tbl_ThietBi.CurrentRow;
-            //thietBiDTO.ID_TB = row.Cells["id_tb"].Value.ToString();
-            //thietBiDTO.Ten = row.Cells["tentb"].Value.ToString();
-            //thietBiDTO.Loai = row.Cells["loaitb"].Value.ToString();
-            //thietBiDTO.SoLuong = Convert.ToInt32(row.Cells["soluongtb"].Value);
-            //thietBiDTO.TinhTrang = row.Cells["tinhtrangtb"].Value.ToString();
-            //thietBiDTO.SoLuongHu = Convert.ToInt32(row.Cells["soluonghu"].Value);
-            //thietBiDTO.HangSX = row.Cells["hangsxtb"].Value.ToString();
-            //thietBiDTO.GhiChu = row.Cells["ghichu"].Value.ToString();
-            //thietBiDTO.HinhAnh = (Byte[])row.Cells["hinhanh"].Value;
-        }
-
-        private void getSPRowToTxtBOX(DataGridViewRow row)
-        {
-            txt_TenSP.Text = row.Cells["ten"].Value.ToString();
-            txt_LoaiSP.Text = row.Cells["loai"].Value.ToString();
-            txt_SoLuongSP.Text = row.Cells["soluong"].Value.ToString();
-            txt_DonGiaSP.Text = row.Cells["dongia"].Value.ToString();
-
-            string tt = row.Cells["tinhtrang"].Value.ToString();
-            lbl_TinhTrangSP.Text = tt;
-            if (tt == "Còn hàng")
-                lbl_TinhTrangSP.ForeColor = Color.MediumBlue;
-            else if (tt == "Hết hàng")
-                lbl_TinhTrangSP.ForeColor = Color.Red;
-
-            Byte[] data = new Byte[0];
-            data = (Byte[])(row.Cells["hinhanh"].Value);
-            MemoryStream mem = new MemoryStream(data);
-            picbox_SP.Image = Image.FromStream(mem);
-        }
-
-        private void getTBRowToTxtBOX(DataGridViewRow row)
-        {
-            txt_TenTB.Text = row.Cells[1].Value.ToString();
-            txt_LoaiTB.Text = row.Cells[2].Value.ToString();
-            txt_SoLuongTB.Text = row.Cells[3].Value.ToString();
-            txt_HangSXTB.Text = row.Cells[4].Value.ToString();
-
-            string tt = row.Cells[5].Value.ToString();
-            lbl_TinhTrangTB.Text = tt;
-            if (tt == "Mới")
-                lbl_TinhTrangTB.ForeColor = Color.MediumBlue;
-            else if (tt == "Tốt")
-                lbl_TinhTrangTB.ForeColor = Color.Green;
-            else if (tt == "Hư")
-                lbl_TinhTrangTB.ForeColor = Color.Red;
-
-            Byte[] data = new Byte[0];
-            data = (Byte[])(row.Cells["hinhanh"].Value);
-            MemoryStream mem = new MemoryStream(data);
-            picbox_TB.Image = Image.FromStream(mem);
-        }
-
-        // Events
+        #region Controller Innit
         private void Index_Load(object sender, EventArgs e)
         {
             // Hoi Vien
@@ -279,6 +45,7 @@ namespace QuanLyPhongGym.Pages
             tbl_SanPham.Columns[7].HeaderText = "Hãng sản xuất";
             tbl_SanPham.Columns[8].HeaderText = "Tình trạng";
             tbl_SanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
 
             // Thiet Bi
             tbl_ThietBi.Columns[0].HeaderText = "Mã thiết bị";
@@ -341,7 +108,214 @@ namespace QuanLyPhongGym.Pages
                 e.Graphics.DrawImage(img, _x, _y);
             }
         }
+        #endregion
 
+        #region Search boxes placeholders
+        private void txt_HoiVienSearch_Enter(object sender, EventArgs e)
+        {
+            if (txt_SearchHV.Text == "Search...")
+            {
+                txt_SearchHV.Text = "";
+                txt_SearchHV.ForeColor = Color.Black;
+            }
+        }
+
+        private void txt_HoiVienSearch_Leave(object sender, EventArgs e)
+        {
+            if (txt_SearchHV.Text == "")
+            {
+                txt_SearchHV.Text = "Search...";
+                txt_SearchHV.ForeColor = Color.Gray;
+            }
+        }
+
+        private void btn_HoiVienSearch_Click(object sender, EventArgs e)
+        {
+            load_HoiVien(txt_SearchHV.Text);
+        }
+
+        private void txt_HoiVienSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                load_HoiVien(txt_SearchHV.Text);
+        }
+
+        private void txt_SanPhamSearch_Enter(object sender, EventArgs e)
+        {
+            if (txt_SearchSP.Text == "Search...")
+            {
+                txt_SearchSP.Text = "";
+                txt_SearchSP.ForeColor = Color.Black;
+            }
+        }
+
+        private void txt_SanPhamSearch_Leave(object sender, EventArgs e)
+        {
+            if (txt_SearchSP.Text == "")
+            {
+                txt_SearchSP.Text = "Search...";
+                txt_SearchSP.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txt_SanPhamSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                load_SanPham(txt_SearchSP.Text);
+        }
+
+        private void btn_SanPhamSearch_Click(object sender, EventArgs e)
+        {
+            load_SanPham(txt_SearchSP.Text);
+        }
+
+        private void txt_ThietBiSearch_Enter(object sender, EventArgs e)
+        {
+            if (txt_SearchTB.Text == "Search...")
+            {
+                txt_SearchTB.Text = "";
+                txt_SearchTB.ForeColor = Color.Black;
+            }
+        }
+
+        private void txt_ThietBiSearch_Leave(object sender, EventArgs e)
+        {
+            if (txt_SearchTB.Text == "")
+            {
+                txt_SearchTB.Text = "Search...";
+                txt_SearchTB.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txt_ThietBiSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                load_ThietBi(txt_SearchTB.Text);
+        }
+
+        private void btn_ThietBiSearch_Click(object sender, EventArgs e)
+        {
+            load_ThietBi(txt_SearchTB.Text);
+        }
+        #endregion
+
+        #region Search And Load data By keyword
+        private void load_HoiVien(string keyword = null)
+        {
+            tbl_HoiVien.Rows.Clear();
+            _DS_HoiVien = _dbController.SelectAll<HoiVienModel>(new HoiVienModel());
+            if (!string.IsNullOrEmpty(keyword) && keyword != "Search...")
+            {
+                string strKeyword = keyword.ToLower().Trim();
+                _DS_HoiVien = _DS_HoiVien.Where(item =>
+                        item.MaHV.ToLower().Contains(strKeyword)
+                    ||
+                        item.HoTen.ToLower().Contains(strKeyword)
+                    ||
+                        item.SDT.ToLower().Contains(strKeyword)
+                ).ToList();
+            }
+
+            if (_DS_HoiVien != null)
+            {
+                foreach (HoiVienModel hoiVien in _DS_HoiVien)
+                {
+                    // Tạo một mảng các giá trị cho từng cột
+                    string[] row = new string[]
+                    {
+                        hoiVien.MaHV,
+                        hoiVien.HoTen
+                    };
+                    tbl_HoiVien.Rows.Add(row);
+                }
+            }
+        }
+
+        private void load_SanPham(string keyword = null)
+        {
+            tbl_SanPham.Rows.Clear();
+            _DS_SanPham = _dbController.SelectAll<SanPhamModel>(new SanPhamModel());
+            _DS_SanPham = _DS_SanPham.OrderByDescending(item => item.NgayNhap).ToList();
+
+            if (!string.IsNullOrEmpty(keyword) && keyword != "Search...")
+            {
+                string strKeyword = keyword.ToLower().Trim();
+                _DS_SanPham = _DS_SanPham.Where(item =>
+                        item.MaSP.ToLower().Contains(strKeyword)
+                    ||
+                        item.Ten.ToLower().Contains(strKeyword)
+                    ||
+                        item.Loai.ToLower().Contains(strKeyword)
+                    ||
+                        item.HangSX.ToLower().Contains(strKeyword)
+                    ||
+                        item.TinhTrang.ToLower().Contains(strKeyword)
+                ).ToList();
+            }
+
+            if (_DS_SanPham != null)
+            {
+                foreach (SanPhamModel sanPham in _DS_SanPham)
+                {
+                    // Tạo một mảng các giá trị cho từng cột
+                    string[] row = new string[]
+                    {
+                        sanPham.MaSP,
+                        sanPham.Ten,
+                        sanPham.Loai,
+                        sanPham.NgayNhap.HasValue ? sanPham.NgayNhap.Value.ToString("dd-MM-yyyy HH:mm") : string.Empty,
+                        sanPham.SoLuong.HasValue ? sanPham.SoLuong.ToString() : string.Empty,
+                        sanPham.DonGia.HasValue ? sanPham.DonGia.Value.ToString("N2", new CultureInfo("de-DE")) : string.Empty,
+                        sanPham.TrongLuong,
+                        sanPham.HangSX,
+                        sanPham.TinhTrang
+                    };
+                    tbl_SanPham.Rows.Add(row);
+                }
+            }
+        }
+
+        private void load_ThietBi(string keyword = null)
+        {
+            tbl_ThietBi.Rows.Clear();
+            _DS_ThietBi = _dbController.SelectAll<ThietBiModel>(new ThietBiModel());
+            if (!string.IsNullOrEmpty(keyword) && keyword != "Search...")
+            {
+                string strKeyword = keyword.ToLower().Trim();
+                _DS_ThietBi = _DS_ThietBi.Where(item =>
+                        item.MaTB.ToLower().Contains(strKeyword)
+                    ||
+                        item.Ten.ToLower().Contains(strKeyword)
+                    ||
+                        item.Loai.ToLower().Contains(strKeyword)
+                    ||
+                        item.HangSX.ToLower().Contains(strKeyword)
+                ).ToList();
+            }
+            if (_DS_ThietBi != null)
+            {
+                foreach (ThietBiModel thietBi in _DS_ThietBi)
+                {
+                    // Tạo một mảng các giá trị cho từng cột
+                    string[] row = new string[]
+                    {
+                        thietBi.MaTB,
+                        thietBi.Ten,
+                        thietBi.Loai,
+                        thietBi.SoLuong.HasValue ? thietBi.SoLuong.ToString() : string.Empty,
+                        thietBi.SoLuongHu.HasValue ? thietBi.SoLuongHu.ToString() : string.Empty,
+                        thietBi.TinhTrang,
+                        thietBi.HangSX,
+                        thietBi.GhiChu,
+
+                    };
+                    tbl_ThietBi.Rows.Add(row);
+                }
+            }
+        }
+        #endregion
+
+        #region Method Hoi Vien
         private void get_HoiVien_ByRowTable()
         {
             DataGridViewRow row = tbl_HoiVien.CurrentRow;
@@ -388,7 +362,7 @@ namespace QuanLyPhongGym.Pages
 
         private void btn_XoaHoiVien_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn chác chắn muốn xóa dữ liệu?", "Thông báo", MessageBoxButtons.OKCancel)!= DialogResult.OK)
+            if (MessageBox.Show("Bạn chác chắn muốn xóa dữ liệu?", "Thông báo", MessageBoxButtons.OKCancel) != DialogResult.OK)
                 return;
 
             try
@@ -402,14 +376,14 @@ namespace QuanLyPhongGym.Pages
                     if (hoiVien != null)
                     {
                         _dbController.Delete(hoiVien);
-                        MessageBox.Show("Xóa THÀNH CÔNG!");
+                        MessageBox.Show("Xóa thành công!");
                     }
                 }    
                 load_HoiVien();
             }
             catch (Exception)
             {
-                MessageBox.Show("Xóa THẤT BẠI!");
+                MessageBox.Show("Xóa thất bại!");
             }
         }
 
@@ -443,150 +417,163 @@ namespace QuanLyPhongGym.Pages
             lbl_HetHan.Text = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
-        private void txt_SDT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
-        private void btn_CapNhatHoiVien_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cell_HoiVien_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             btn_GiaHanHV.Enabled = true;
             get_HoiVien_ByRowTable();
         }
+        #endregion
 
-        private void dtgvSanPham_CellEnter(object sender, DataGridViewCellEventArgs e)
+        #region Method Sản Phẩm
+        private void get_SanPham_ByRowTable()
         {
             DataGridViewRow row = tbl_SanPham.CurrentRow;
-            getSPRowToTxtBOX(row);
+            string strMaSP = row.Cells[0].Value + string.Empty;
+            if (!string.IsNullOrEmpty(strMaSP))
+            {
+                SanPhamModel sanPham = new SanPhamModel { MaSP = strMaSP };
+                sanPham = _dbController.Select<SanPhamModel>(sanPham);
+                if (sanPham != null)
+                {
+                    txt_TenSP.Text = sanPham.Ten;
+                    txt_LoaiSP.Text = sanPham.Loai;
+                    txt_SoLuongSP.Text = sanPham.SoLuong.HasValue ? sanPham.SoLuong.ToString() : string.Empty;
+                    txt_DonGiaSP.Text = sanPham.DonGia.HasValue ? sanPham.DonGia.Value.ToString("N2", new CultureInfo("de-DE")) : string.Empty;
+                    lbl_TinhTrangSP.Text = sanPham.TinhTrang;
+                    if (sanPham.HinhAnh != null && sanPham.HinhAnh.Length > 0)
+                    {
+                        MemoryStream image = new MemoryStream(sanPham.HinhAnh);
+                        picbox_SP.Image = Image.FromStream(image);
+                    }
+                    else
+                        picbox_SP.Image = null;
+                }
+            }
         }
 
-        private void btnThemSP_Click(object sender, EventArgs e)
+        private void cell_SanPham_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow lastRow = tbl_SanPham.Rows[tbl_SanPham.Rows.Count - 1];
-            string lastRowID = lastRow.Cells["id_sp"].Value.ToString();
-            FormSanPham fadd = new FormSanPham(lastRow, lastRowID);
+            get_SanPham_ByRowTable();
+        }
+
+        private void btn_ThemSP_Click(object sender, EventArgs e)
+        {
+            FormSanPham fadd = new FormSanPham(null);
             fadd.ShowDialog();
             load_SanPham();
         }
 
-        private void btnXoaSP_Click(object sender, EventArgs e)
+        private void btn_XoaSP_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Chấp nhận xóa dữ liệu ?", "Thông báo", MessageBoxButtons.OKCancel)
-                != System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("Bạn chác chắn muốn xóa dữ liệu?", "Thông báo", MessageBoxButtons.OKCancel) != DialogResult.OK)
                 return;
 
             try
             {
-                getCurrentRowSPInfo();
-                //sanPhamCTL.SanPham = sanPhamDTO;
-                //sanPhamCTL.delete();
-
-                MessageBox.Show("Xóa THÀNH CÔNG!");
+                DataGridViewRow row = tbl_SanPham.CurrentRow;
+                string strMaSP = row.Cells[0].Value + string.Empty;
+                if (!string.IsNullOrEmpty(strMaSP))
+                {
+                    SanPhamModel sanPham = new SanPhamModel { MaSP = strMaSP };
+                    sanPham = _dbController.Select<SanPhamModel>(sanPham);
+                    if (sanPham != null)
+                    {
+                        _dbController.Delete(sanPham);
+                        MessageBox.Show("Xóa thành công!");
+                    }
+                }
                 load_SanPham();
             }
             catch (Exception)
             {
-                MessageBox.Show("Xóa THẤT BẠI!");
+                MessageBox.Show("Xóa thất bại!");
             }
         }
 
-        private void btnSuaSP_Click(object sender, EventArgs e)
+        private void btn_SuaSP_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = tbl_SanPham.CurrentRow;
-            FormSanPham fEdit = new FormSanPham(curRow, null);
-            fEdit.ShowDialog();
+            DataGridViewRow row = tbl_SanPham.CurrentRow;
+            string strMaSP = row.Cells[0].Value + string.Empty;
+            FormSanPham fadd = new FormSanPham(strMaSP);
+            fadd.ShowDialog();
             load_SanPham();
         }
+        #endregion
 
-        private void txtSearchSP_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                load_SanPham(txt_SearchSP.Text);
-        }
-
-        private void btnSearchSP_Click(object sender, EventArgs e)
-        {
-            load_SanPham(txt_SearchSP.Text);
-        }
-
-        private void dtgvThietBi_CellEnter(object sender, DataGridViewCellEventArgs e)
+        #region Method Thiết Bi
+        private void get_ThietBi_ByRowTable()
         {
             DataGridViewRow row = tbl_ThietBi.CurrentRow;
-            getTBRowToTxtBOX(row);
+            string strMaTB = row.Cells[0].Value + string.Empty;
+            if (!string.IsNullOrEmpty(strMaTB))
+            {
+                ThietBiModel thietBi = new ThietBiModel { MaTB = strMaTB };
+                thietBi = _dbController.Select<ThietBiModel>(thietBi);
+                if (thietBi != null)
+                {
+                    txt_TenTB.Text = thietBi.Ten;
+                    txt_LoaiTB.Text = thietBi.Loai;
+                    txt_SoLuongTB.Text = thietBi.SoLuong.HasValue ? thietBi.SoLuong.ToString() : string.Empty;
+                    txt_HangSXTB.Text = thietBi.HangSX;
+                    lbl_TinhTrangTB.Text = thietBi.TinhTrang;
+                    if (thietBi.HinhAnh != null && thietBi.HinhAnh.Length > 0)
+                    {
+                        MemoryStream image = new MemoryStream(thietBi.HinhAnh);
+                        picbox_TB.Image = Image.FromStream(image);
+                    }
+                    else
+                        picbox_TB.Image = null;
+                }
+            }
         }
 
-        private void btnThemTB_Click(object sender, EventArgs e)
+        private void cell_ThietBi_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            //int soMay = thietBiCTL.countTBType("Máy");
-            //int soTa = thietBiCTL.countTBType("Tạ");
-            //fThemTB fadd = new fThemTB(soMay, soTa);
-            //fadd.ShowDialog();
+            get_ThietBi_ByRowTable();
+        }
+
+        private void btn_ThemTB_Click(object sender, EventArgs e)
+        {
+            FormThietBi fadd = new FormThietBi(null);
+            fadd.ShowDialog();
             load_ThietBi();
         }
 
-        private void btnXoaTB_Click(object sender, EventArgs e)
+        private void btn_XoaTB_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Chấp nhận xóa dữ liệu ?", "Thông báo", MessageBoxButtons.OKCancel)
-                != System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("Bạn chác chắn muốn xóa dữ liệu?", "Thông báo", MessageBoxButtons.OKCancel) != DialogResult.OK)
                 return;
 
             try
             {
-                getCurrentRowTBInfo();
-                //thietBiCTL.ThietBi = thietBiDTO;
-                //thietBiCTL.delete();
-
-                MessageBox.Show("Xóa THÀNH CÔNG!");
+                DataGridViewRow row = tbl_ThietBi.CurrentRow;
+                string strMaTB = row.Cells[0].Value + string.Empty;
+                if (!string.IsNullOrEmpty(strMaTB))
+                {
+                    ThietBiModel thietBi = new ThietBiModel { MaTB = strMaTB };
+                    thietBi = _dbController.Select<ThietBiModel>(thietBi);
+                    if (thietBi != null)
+                    {
+                        _dbController.Delete(thietBi);
+                        MessageBox.Show("Xóa thành công!");
+                    }
+                }
                 load_ThietBi();
             }
             catch (Exception)
             {
-                MessageBox.Show("Xóa THẤT BẠI!");
+                MessageBox.Show("Xóa thất bại!");
             }
         }
 
-        private void btnSuaTB_Click(object sender, EventArgs e)
+        private void btn_SuaTB_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = tbl_ThietBi.CurrentRow;
-            //fSuaTB fEdit = new fSuaTB(curRow);
-            //fEdit.ShowDialog();
+            DataGridViewRow row = tbl_ThietBi.CurrentRow;
+            string strMaTB = row.Cells[0].Value + string.Empty;
+            FormThietBi fadd = new FormThietBi(strMaTB);
+            fadd.ShowDialog();
             load_ThietBi();
         }
-
-        private void txtSearchTB_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                load_ThietBi(txt_SearchTB.Text);
-        }
-
-        private void btnSearchTB_Click(object sender, EventArgs e)
-        {
-            load_ThietBi(txt_SearchTB.Text);
-        }
-
-        private void picBoxHV_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.Title = "Chọn ảnh đại diện";
-                dlg.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All Files (*.*)|*.*";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    imgLoc = dlg.FileName;
-                    picbox_HV.ImageLocation = imgLoc;
-                    //hoiVienDTO.HinhAnh = ImageToByteArray(imgLoc);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        #endregion
     }
 }

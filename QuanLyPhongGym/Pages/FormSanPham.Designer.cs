@@ -29,73 +29,87 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.picBoxSP = new System.Windows.Forms.PictureBox();
-            this.txtHangSXSP = new System.Windows.Forms.TextBox();
+            this.btn_RefeshField = new System.Windows.Forms.Button();
+            this.picbox_SP = new System.Windows.Forms.PictureBox();
+            this.txt_HangSXSP = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtTrongLuongSP = new System.Windows.Forms.TextBox();
+            this.txt_TrongLuongSP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtDonGiaSP = new System.Windows.Forms.TextBox();
+            this.txt_DonGiaSP = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.cmbLoaiSP = new System.Windows.Forms.ComboBox();
-            this.txtSoLuongSP = new System.Windows.Forms.TextBox();
-            this.txtTenSP = new System.Windows.Forms.TextBox();
+            this.date_NgayNhap = new System.Windows.Forms.DateTimePicker();
+            this.cbb_LoaiSP = new System.Windows.Forms.ComboBox();
+            this.txt_SoLuongSP = new System.Windows.Forms.TextBox();
+            this.txt_TenSP = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbTinhTrangSP = new System.Windows.Forms.ComboBox();
+            this.cbb_TinhTrangSP = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnLuuSP = new System.Windows.Forms.Button();
+            this.btn_LuuSP = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxSP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_SP)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.picBoxSP);
-            this.groupBox1.Controls.Add(this.txtHangSXSP);
+            this.groupBox1.Controls.Add(this.btn_RefeshField);
+            this.groupBox1.Controls.Add(this.picbox_SP);
+            this.groupBox1.Controls.Add(this.txt_HangSXSP);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtTrongLuongSP);
+            this.groupBox1.Controls.Add(this.txt_TrongLuongSP);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtDonGiaSP);
+            this.groupBox1.Controls.Add(this.txt_DonGiaSP);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dateTimePicker);
-            this.groupBox1.Controls.Add(this.cmbLoaiSP);
-            this.groupBox1.Controls.Add(this.txtSoLuongSP);
-            this.groupBox1.Controls.Add(this.txtTenSP);
+            this.groupBox1.Controls.Add(this.date_NgayNhap);
+            this.groupBox1.Controls.Add(this.cbb_LoaiSP);
+            this.groupBox1.Controls.Add(this.txt_SoLuongSP);
+            this.groupBox1.Controls.Add(this.txt_TenSP);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbTinhTrangSP);
+            this.groupBox1.Controls.Add(this.cbb_TinhTrangSP);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.btnLuuSP);
+            this.groupBox1.Controls.Add(this.btn_LuuSP);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(23, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(371, 497);
+            this.groupBox1.Size = new System.Drawing.Size(371, 511);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SỬA SẢN PHẨM";
             // 
-            // picBoxSP
+            // btn_RefeshField
             // 
-            this.picBoxSP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxSP.Location = new System.Drawing.Point(100, 36);
-            this.picBoxSP.Name = "picBoxSP";
-            this.picBoxSP.Size = new System.Drawing.Size(171, 124);
-            this.picBoxSP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBoxSP.TabIndex = 34;
-            this.picBoxSP.TabStop = false;
+            this.btn_RefeshField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RefeshField.Location = new System.Drawing.Point(290, 465);
+            this.btn_RefeshField.Name = "btn_RefeshField";
+            this.btn_RefeshField.Size = new System.Drawing.Size(75, 28);
+            this.btn_RefeshField.TabIndex = 35;
+            this.btn_RefeshField.Text = "Làm mới";
+            this.btn_RefeshField.UseVisualStyleBackColor = true;
+            this.btn_RefeshField.Click += new System.EventHandler(this.btn_RefeshField_Click);
             // 
-            // txtHangSXSP
+            // picbox_SP
             // 
-            this.txtHangSXSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHangSXSP.Location = new System.Drawing.Point(150, 389);
-            this.txtHangSXSP.Name = "txtHangSXSP";
-            this.txtHangSXSP.Size = new System.Drawing.Size(181, 22);
-            this.txtHangSXSP.TabIndex = 30;
+            this.picbox_SP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbox_SP.Location = new System.Drawing.Point(100, 36);
+            this.picbox_SP.Name = "picbox_SP";
+            this.picbox_SP.Size = new System.Drawing.Size(171, 124);
+            this.picbox_SP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picbox_SP.TabIndex = 34;
+            this.picbox_SP.TabStop = false;
+            this.picbox_SP.Click += new System.EventHandler(this.picbox_SP_Click);
+            // 
+            // txt_HangSXSP
+            // 
+            this.txt_HangSXSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_HangSXSP.Location = new System.Drawing.Point(150, 389);
+            this.txt_HangSXSP.Name = "txt_HangSXSP";
+            this.txt_HangSXSP.Size = new System.Drawing.Size(181, 22);
+            this.txt_HangSXSP.TabIndex = 30;
             // 
             // label7
             // 
@@ -107,13 +121,13 @@
             this.label7.TabIndex = 33;
             this.label7.Text = "Hãng sản xuất:";
             // 
-            // txtTrongLuongSP
+            // txt_TrongLuongSP
             // 
-            this.txtTrongLuongSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTrongLuongSP.Location = new System.Drawing.Point(150, 355);
-            this.txtTrongLuongSP.Name = "txtTrongLuongSP";
-            this.txtTrongLuongSP.Size = new System.Drawing.Size(181, 22);
-            this.txtTrongLuongSP.TabIndex = 29;
+            this.txt_TrongLuongSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TrongLuongSP.Location = new System.Drawing.Point(150, 355);
+            this.txt_TrongLuongSP.Name = "txt_TrongLuongSP";
+            this.txt_TrongLuongSP.Size = new System.Drawing.Size(181, 22);
+            this.txt_TrongLuongSP.TabIndex = 29;
             // 
             // label6
             // 
@@ -125,13 +139,13 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "Trọng lượng:";
             // 
-            // txtDonGiaSP
+            // txt_DonGiaSP
             // 
-            this.txtDonGiaSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDonGiaSP.Location = new System.Drawing.Point(150, 321);
-            this.txtDonGiaSP.Name = "txtDonGiaSP";
-            this.txtDonGiaSP.Size = new System.Drawing.Size(181, 22);
-            this.txtDonGiaSP.TabIndex = 28;
+            this.txt_DonGiaSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_DonGiaSP.Location = new System.Drawing.Point(150, 321);
+            this.txt_DonGiaSP.Name = "txt_DonGiaSP";
+            this.txt_DonGiaSP.Size = new System.Drawing.Size(181, 22);
+            this.txt_DonGiaSP.TabIndex = 28;
             // 
             // label5
             // 
@@ -143,45 +157,47 @@
             this.label5.TabIndex = 31;
             this.label5.Text = "Đơn giá:";
             // 
-            // dateTimePicker
+            // date_NgayNhap
             // 
-            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker.Location = new System.Drawing.Point(150, 251);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(181, 22);
-            this.dateTimePicker.TabIndex = 25;
+            this.date_NgayNhap.CustomFormat = "dd/MM/yyyy";
+            this.date_NgayNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_NgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date_NgayNhap.Location = new System.Drawing.Point(150, 251);
+            this.date_NgayNhap.Name = "date_NgayNhap";
+            this.date_NgayNhap.Size = new System.Drawing.Size(181, 22);
+            this.date_NgayNhap.TabIndex = 25;
             // 
-            // cmbLoaiSP
+            // cbb_LoaiSP
             // 
-            this.cmbLoaiSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLoaiSP.FormattingEnabled = true;
-            this.cmbLoaiSP.Items.AddRange(new object[] {
+            this.cbb_LoaiSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_LoaiSP.FormattingEnabled = true;
+            this.cbb_LoaiSP.Items.AddRange(new object[] {
             "Whey Protein",
             "Mass",
             "BCAA",
             "Amino",
             "Pre-Workout",
             "Phụ kiện"});
-            this.cmbLoaiSP.Location = new System.Drawing.Point(150, 213);
-            this.cmbLoaiSP.Name = "cmbLoaiSP";
-            this.cmbLoaiSP.Size = new System.Drawing.Size(121, 24);
-            this.cmbLoaiSP.TabIndex = 23;
+            this.cbb_LoaiSP.Location = new System.Drawing.Point(150, 213);
+            this.cbb_LoaiSP.Name = "cbb_LoaiSP";
+            this.cbb_LoaiSP.Size = new System.Drawing.Size(121, 24);
+            this.cbb_LoaiSP.TabIndex = 23;
             // 
-            // txtSoLuongSP
+            // txt_SoLuongSP
             // 
-            this.txtSoLuongSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoLuongSP.Location = new System.Drawing.Point(150, 287);
-            this.txtSoLuongSP.Name = "txtSoLuongSP";
-            this.txtSoLuongSP.Size = new System.Drawing.Size(181, 22);
-            this.txtSoLuongSP.TabIndex = 27;
+            this.txt_SoLuongSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SoLuongSP.Location = new System.Drawing.Point(150, 287);
+            this.txt_SoLuongSP.Name = "txt_SoLuongSP";
+            this.txt_SoLuongSP.Size = new System.Drawing.Size(181, 22);
+            this.txt_SoLuongSP.TabIndex = 27;
             // 
-            // txtTenSP
+            // txt_TenSP
             // 
-            this.txtTenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenSP.Location = new System.Drawing.Point(150, 179);
-            this.txtTenSP.Name = "txtTenSP";
-            this.txtTenSP.Size = new System.Drawing.Size(181, 22);
-            this.txtTenSP.TabIndex = 21;
+            this.txt_TenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TenSP.Location = new System.Drawing.Point(150, 179);
+            this.txt_TenSP.Name = "txt_TenSP";
+            this.txt_TenSP.Size = new System.Drawing.Size(181, 22);
+            this.txt_TenSP.TabIndex = 21;
             // 
             // label4
             // 
@@ -223,17 +239,17 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Tên sản phẩm:";
             // 
-            // cmbTinhTrangSP
+            // cbb_TinhTrangSP
             // 
-            this.cmbTinhTrangSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTinhTrangSP.FormattingEnabled = true;
-            this.cmbTinhTrangSP.Items.AddRange(new object[] {
+            this.cbb_TinhTrangSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_TinhTrangSP.FormattingEnabled = true;
+            this.cbb_TinhTrangSP.Items.AddRange(new object[] {
             "Còn hàng",
             "Hết hàng"});
-            this.cmbTinhTrangSP.Location = new System.Drawing.Point(150, 423);
-            this.cmbTinhTrangSP.Name = "cmbTinhTrangSP";
-            this.cmbTinhTrangSP.Size = new System.Drawing.Size(121, 24);
-            this.cmbTinhTrangSP.TabIndex = 19;
+            this.cbb_TinhTrangSP.Location = new System.Drawing.Point(150, 423);
+            this.cbb_TinhTrangSP.Name = "cbb_TinhTrangSP";
+            this.cbb_TinhTrangSP.Size = new System.Drawing.Size(121, 24);
+            this.cbb_TinhTrangSP.TabIndex = 19;
             // 
             // label8
             // 
@@ -245,27 +261,28 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Tình trạng:";
             // 
-            // btnLuuSP
+            // btn_LuuSP
             // 
-            this.btnLuuSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuSP.Location = new System.Drawing.Point(256, 461);
-            this.btnLuuSP.Name = "btnLuuSP";
-            this.btnLuuSP.Size = new System.Drawing.Size(75, 28);
-            this.btnLuuSP.TabIndex = 8;
-            this.btnLuuSP.Text = "Lưu";
-            this.btnLuuSP.UseVisualStyleBackColor = true;
+            this.btn_LuuSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LuuSP.Location = new System.Drawing.Point(189, 465);
+            this.btn_LuuSP.Name = "btn_LuuSP";
+            this.btn_LuuSP.Size = new System.Drawing.Size(75, 28);
+            this.btn_LuuSP.TabIndex = 8;
+            this.btn_LuuSP.Text = "Lưu";
+            this.btn_LuuSP.UseVisualStyleBackColor = true;
+            this.btn_LuuSP.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
             // FormSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 525);
+            this.ClientSize = new System.Drawing.Size(418, 535);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormSanPham";
             this.Text = "FormSanPham";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxSP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_SP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,23 +290,24 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox picBoxSP;
-        private System.Windows.Forms.TextBox txtHangSXSP;
+        private System.Windows.Forms.PictureBox picbox_SP;
+        private System.Windows.Forms.TextBox txt_HangSXSP;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtTrongLuongSP;
+        private System.Windows.Forms.TextBox txt_TrongLuongSP;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtDonGiaSP;
+        private System.Windows.Forms.TextBox txt_DonGiaSP;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.ComboBox cmbLoaiSP;
-        private System.Windows.Forms.TextBox txtSoLuongSP;
-        private System.Windows.Forms.TextBox txtTenSP;
+        private System.Windows.Forms.DateTimePicker date_NgayNhap;
+        private System.Windows.Forms.ComboBox cbb_LoaiSP;
+        private System.Windows.Forms.TextBox txt_SoLuongSP;
+        private System.Windows.Forms.TextBox txt_TenSP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbTinhTrangSP;
+        private System.Windows.Forms.ComboBox cbb_TinhTrangSP;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnLuuSP;
+        private System.Windows.Forms.Button btn_LuuSP;
+        private System.Windows.Forms.Button btn_RefeshField;
     }
 }

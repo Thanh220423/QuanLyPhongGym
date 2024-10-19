@@ -108,7 +108,7 @@ namespace QuanLyPhongGym.Pages
                 else
                     _dbController.Insert(hoiVien);
 
-                if (MessageBox.Show(!string.IsNullOrEmpty(_MaHV) ? "Cập nhật THÀNH CÔNG!" : "Thêm THÀNH CÔNG!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show(!string.IsNullOrEmpty(_MaHV) ? "Cập nhật thành công!" : "Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     this.Close();
             }
             catch (Exception ex)
@@ -139,17 +139,12 @@ namespace QuanLyPhongGym.Pages
             lbl_HetHan.Text = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
-        private void txtSDT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
         private void picbox_HV_Click(object sender, EventArgs e)
         {
             try
             {
                 OpenFileDialog dlg = new OpenFileDialog();
-                dlg.Title = "Chọn ảnh đại diện";
+                dlg.Title = "Chọn ảnh sản phẩm";
                 dlg.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {

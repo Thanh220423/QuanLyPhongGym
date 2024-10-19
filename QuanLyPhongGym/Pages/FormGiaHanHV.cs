@@ -32,12 +32,12 @@ namespace QuanLyPhongGym.Pages
                 _hoiVien.GoiTap = cbb_GoiTap.Text;
                 _hoiVien.NgayHetHan = _Date_GoiTap;
                 _dbController.Update(_hoiVien, new List<string> { "GoiTap", "NgayHetHan" });
-                if (MessageBox.Show("Gia hạn THÀNH CÔNG!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show("Gia hạn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show("Gia hạn THẤT BẠI!", "Thông báo");
+                MessageBox.Show("Gia hạn thất bại!", "Thông báo");
             }
         }
 

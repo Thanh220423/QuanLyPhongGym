@@ -1,4 +1,7 @@
-﻿using System;
+﻿using QuanLyPhongGym.Areas;
+using QuanLyPhongGym.Controller;
+using QuanLyPhongGym.Model;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -7,79 +10,116 @@ namespace QuanLyPhongGym.Pages
 {
     public partial class FormSanPham : Form
     {
-        //private SanPhamCTL sanPhamCTL = new SanPhamCTL();
-        //private SanPhamDTO sp = new SanPhamDTO();
-        private DataGridViewRow curRow;
-        private bool isAnotherImage = false;
-        private string imgLoc;
+        private DBController _dbController = new DBController();
+        private CmmFunc _cmmFunc = new CmmFunc();
+        private string _ImgSPPath;
+        private string _MaSP;
 
-        public FormSanPham(DataGridViewRow curRow, string IdSP)
+        public FormSanPham(string MaSP)
         {
             InitializeComponent();
-            this.curRow = curRow;
+            if (!string.IsNullOrEmpty(MaSP))
+            {
+                _MaSP = MaSP;
+                SanPhamModel sanPham = new SanPhamModel { MaSP = MaSP };
+                sanPham = _dbController.Select<SanPhamModel>(sanPham);
+                if (sanPham != null)
+                {
+                    txt_TenSP.Text = sanPham.Ten;
+                    _cmmFunc.SelectCbbByText(cbb_LoaiSP, sanPham.Loai);
+                    date_NgayNhap.Value = sanPham.NgayNhap.Value;
+                    txt_SoLuongSP.Text = sanPham.SoLuong.HasValue ? sanPham.SoLuong.ToString() : string.Empty;
+                    txt_DonGiaSP.Text = sanPham.DonGia.HasValue ? sanPham.DonGia.Value.ToString() : string.Empty;
+                    txt_TrongLuongSP.Text = sanPham.TrongLuong;
+                    txt_HangSXSP.Text = sanPham.HangSX;
+                    _cmmFunc.SelectCbbByText(cbb_TinhTrangSP, sanPham.TinhTrang);
 
-            // row data to form
-            txtTenSP.Text = curRow.Cells["ten"].Value.ToString();
-            cmbLoaiSP.Text = curRow.Cells["loai"].Value.ToString();
-            dateTimePicker.Value = (DateTime)curRow.Cells["ngaynhap"].Value;
-            txtSoLuongSP.Text = curRow.Cells["soluong"].Value.ToString();
-            txtDonGiaSP.Text = curRow.Cells["dongia"].Value.ToString();
-            txtTrongLuongSP.Text = curRow.Cells["trongluong"].Value.ToString();
-            txtHangSXSP.Text = curRow.Cells["hangsx"].Value.ToString();
-            cmbTinhTrangSP.Text = curRow.Cells["tinhtrang"].Value.ToString();
-
-            Byte[] data = new Byte[0];
-            data = (Byte[])(curRow.Cells["hinhanh"].Value);
-            MemoryStream mem = new MemoryStream(data);
-            picBoxSP.Image = Image.FromStream(mem);
+                    if (sanPham.HinhAnh != null && sanPham.HinhAnh.Length > 0)
+                    {
+                        MemoryStream image = new MemoryStream(sanPham.HinhAnh);
+                        picbox_SP.Image = Image.FromStream(image);
+                    }
+                    else
+                        picbox_SP.Image = null;
+                }
+            }
+            else
+                ClearField();
         }
 
-        private Byte[] ImageToByteArray(string imgLocation)
+        private void ClearField()
+        {
+            Action<Control.ControlCollection> func = null;
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
+            func(Controls);
+            picbox_SP.ImageLocation = null;
+            cbb_LoaiSP.SelectedIndex = 0;
+            cbb_TinhTrangSP.SelectedIndex = 0;
+            date_NgayNhap.Value = DateTime.Now;
+        }
+
+        private Byte[] ImageToByteArray(string _ImgSP)
         {
             Byte[] img = null;
-            FileStream fs = new FileStream(imgLocation, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(_ImgSP, FileMode.Open, FileAccess.Read);
             BinaryReader br = new BinaryReader(fs);
             img = br.ReadBytes((int)fs.Length);
 
             return img;
         }
 
-        private void LayThongTinSanPham()
+        private void btn_Luu_Click(object sender, EventArgs e)
         {
-            //sp.ID_SP = curRow.Cells["id_sp"].Value.ToString();
-            //sp.Ten = txtTenSP.Text;
-            //sp.Loai = cmbLoaiSP.Text;
-            //sp.NgayNhap = dateTimePicker.Value.Date;
+            try
+            {
+                SanPhamModel sanPham = null;
+                if (!string.IsNullOrEmpty(_MaSP))
+                {
+                    sanPham = new SanPhamModel { MaSP = _MaSP };
+                    sanPham = _dbController.Select<SanPhamModel>(sanPham);
+                }
+                else
+                {
+                    sanPham = new SanPhamModel();
+                    sanPham.MaSP = _dbController.CreateStrNewID("SP", sanPham);
+                }
 
-            //int result = 0;
-            //bool b = int.TryParse(txtSoLuongSP.Text, out result);
-            //sp.SoLuong = result;
+                sanPham.Ten = txt_TenSP.Text;
+                sanPham.Loai = cbb_LoaiSP.SelectedItem.ToString();
+                sanPham.TrongLuong = txt_TrongLuongSP.Text;
+                sanPham.HangSX = txt_HangSXSP.Text;
+                sanPham.TinhTrang = cbb_TinhTrangSP.SelectedItem.ToString();
+                sanPham.NgayNhap = date_NgayNhap.Value;
+                sanPham.SoLuong = !string.IsNullOrEmpty(txt_SoLuongSP.Text) ? int.Parse(txt_SoLuongSP.Text) : 0;
 
-            //sp.DonGia = txtDonGiaSP.Text;
-            //sp.TrongLuong = txtTrongLuongSP.Text;
-            //sp.HangSX = txtHangSXSP.Text;
-            //sp.TinhTrang = cmbTinhTrangSP.Text;
-            //if (!isAnotherImage)
-            //    sp.HinhAnh = (Byte[])curRow.Cells["hinhanh"].Value;
-            //else
-            //    sp.HinhAnh = ImageToByteArray(imgLoc);
+                if (!string.IsNullOrEmpty(txt_DonGiaSP.Text))
+                    sanPham.DonGia = decimal.Parse(txt_DonGiaSP.Text);
+
+                if (picbox_SP.Image != null && _ImgSPPath != null)
+                    sanPham.HinhAnh = ImageToByteArray(_ImgSPPath);
+
+                if (!string.IsNullOrEmpty(_MaSP))
+                    _dbController.Update(sanPham);
+                else
+                    _dbController.Insert(sanPham);
+
+                if (MessageBox.Show(!string.IsNullOrEmpty(_MaSP) ? "Cập nhật thành công!" : "Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Thông báo");
+            }
         }
 
-        private void btnLuuSP_Click(object sender, EventArgs e)
-        {
-            LayThongTinSanPham();
-            //sanPhamCTL.SanPham = sp;
-            //sanPhamCTL.update();
-
-            MessageBox.Show("Lưu THÀNH CÔNG!", "Thông báo");
-        }
-
-        private void txtSoLuongSP_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
-        private void picBoxSP_Click(object sender, EventArgs e)
+        private void picbox_SP_Click(object sender, EventArgs e)
         {
             try
             {
@@ -88,15 +128,19 @@ namespace QuanLyPhongGym.Pages
                 dlg.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|All Files (*.*)|*.*";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    imgLoc = dlg.FileName;
-                    picBoxSP.ImageLocation = imgLoc;
-                    isAnotherImage = true;
+                    _ImgSPPath = dlg.FileName;
+                    picbox_SP.ImageLocation = _ImgSPPath;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btn_RefeshField_Click(object sender, EventArgs e)
+        {
+            ClearField();
         }
     }
 }

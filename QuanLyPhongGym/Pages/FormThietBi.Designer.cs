@@ -29,43 +29,43 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.picBoxTB = new System.Windows.Forms.PictureBox();
-            this.txtGhiChuTB = new System.Windows.Forms.TextBox();
+            this.btn_RefeshField = new System.Windows.Forms.Button();
+            this.picbox_TB = new System.Windows.Forms.PictureBox();
+            this.txt_GhiChuTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbTinhTrangTB = new System.Windows.Forms.ComboBox();
-            this.txtHangSXTB = new System.Windows.Forms.TextBox();
+            this.cbb_TinhTrangTB = new System.Windows.Forms.ComboBox();
+            this.txt_HangSXTB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtSoLuongHuTB = new System.Windows.Forms.TextBox();
+            this.txt_SoLuongHuTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnXoaHetSP = new System.Windows.Forms.Button();
-            this.btnLuuSP = new System.Windows.Forms.Button();
-            this.cmbLoaiTB = new System.Windows.Forms.ComboBox();
-            this.txtSoLuongTB = new System.Windows.Forms.TextBox();
-            this.txtTenTB = new System.Windows.Forms.TextBox();
+            this.btn_LuuTB = new System.Windows.Forms.Button();
+            this.cbb_LoaiTB = new System.Windows.Forms.ComboBox();
+            this.txt_SoLuongTB = new System.Windows.Forms.TextBox();
+            this.txt_TenTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxTB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_TB)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.picBoxTB);
-            this.groupBox1.Controls.Add(this.txtGhiChuTB);
+            this.groupBox1.Controls.Add(this.btn_RefeshField);
+            this.groupBox1.Controls.Add(this.picbox_TB);
+            this.groupBox1.Controls.Add(this.txt_GhiChuTB);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cmbTinhTrangTB);
-            this.groupBox1.Controls.Add(this.txtHangSXTB);
+            this.groupBox1.Controls.Add(this.cbb_TinhTrangTB);
+            this.groupBox1.Controls.Add(this.txt_HangSXTB);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtSoLuongHuTB);
+            this.groupBox1.Controls.Add(this.txt_SoLuongHuTB);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.btnXoaHetSP);
-            this.groupBox1.Controls.Add(this.btnLuuSP);
-            this.groupBox1.Controls.Add(this.cmbLoaiTB);
-            this.groupBox1.Controls.Add(this.txtSoLuongTB);
-            this.groupBox1.Controls.Add(this.txtTenTB);
+            this.groupBox1.Controls.Add(this.btn_LuuTB);
+            this.groupBox1.Controls.Add(this.cbb_LoaiTB);
+            this.groupBox1.Controls.Add(this.txt_SoLuongTB);
+            this.groupBox1.Controls.Add(this.txt_TenTB);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
@@ -77,24 +77,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "THÊM THIẾT BỊ";
             // 
-            // picBoxTB
+            // btn_RefeshField
             // 
-            this.picBoxTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxTB.Location = new System.Drawing.Point(76, 40);
-            this.picBoxTB.Name = "picBoxTB";
-            this.picBoxTB.Size = new System.Drawing.Size(205, 124);
-            this.picBoxTB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picBoxTB.TabIndex = 20;
-            this.picBoxTB.TabStop = false;
+            this.btn_RefeshField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RefeshField.Location = new System.Drawing.Point(283, 456);
+            this.btn_RefeshField.Name = "btn_RefeshField";
+            this.btn_RefeshField.Size = new System.Drawing.Size(75, 28);
+            this.btn_RefeshField.TabIndex = 36;
+            this.btn_RefeshField.Text = "Làm mới";
+            this.btn_RefeshField.UseVisualStyleBackColor = true;
+            this.btn_RefeshField.Click += new System.EventHandler(this.btn_RefeshField_Click);
             // 
-            // txtGhiChuTB
+            // picbox_TB
             // 
-            this.txtGhiChuTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGhiChuTB.Location = new System.Drawing.Point(150, 389);
-            this.txtGhiChuTB.Multiline = true;
-            this.txtGhiChuTB.Name = "txtGhiChuTB";
-            this.txtGhiChuTB.Size = new System.Drawing.Size(181, 51);
-            this.txtGhiChuTB.TabIndex = 19;
+            this.picbox_TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbox_TB.Location = new System.Drawing.Point(76, 40);
+            this.picbox_TB.Name = "picbox_TB";
+            this.picbox_TB.Size = new System.Drawing.Size(205, 124);
+            this.picbox_TB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picbox_TB.TabIndex = 20;
+            this.picbox_TB.TabStop = false;
+            this.picbox_TB.Click += new System.EventHandler(this.picbox_TB_Click);
+            // 
+            // txt_GhiChuTB
+            // 
+            this.txt_GhiChuTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_GhiChuTB.Location = new System.Drawing.Point(150, 389);
+            this.txt_GhiChuTB.Multiline = true;
+            this.txt_GhiChuTB.Name = "txt_GhiChuTB";
+            this.txt_GhiChuTB.Size = new System.Drawing.Size(181, 51);
+            this.txt_GhiChuTB.TabIndex = 19;
             // 
             // label2
             // 
@@ -106,26 +118,26 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Ghi chú:";
             // 
-            // cmbTinhTrangTB
+            // cbb_TinhTrangTB
             // 
-            this.cmbTinhTrangTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTinhTrangTB.FormattingEnabled = true;
-            this.cmbTinhTrangTB.Items.AddRange(new object[] {
+            this.cbb_TinhTrangTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_TinhTrangTB.FormattingEnabled = true;
+            this.cbb_TinhTrangTB.Items.AddRange(new object[] {
             "Mới",
             "Tốt",
             "Hư"});
-            this.cmbTinhTrangTB.Location = new System.Drawing.Point(150, 320);
-            this.cmbTinhTrangTB.Name = "cmbTinhTrangTB";
-            this.cmbTinhTrangTB.Size = new System.Drawing.Size(121, 24);
-            this.cmbTinhTrangTB.TabIndex = 17;
+            this.cbb_TinhTrangTB.Location = new System.Drawing.Point(150, 320);
+            this.cbb_TinhTrangTB.Name = "cbb_TinhTrangTB";
+            this.cbb_TinhTrangTB.Size = new System.Drawing.Size(121, 24);
+            this.cbb_TinhTrangTB.TabIndex = 17;
             // 
-            // txtHangSXTB
+            // txt_HangSXTB
             // 
-            this.txtHangSXTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHangSXTB.Location = new System.Drawing.Point(150, 286);
-            this.txtHangSXTB.Name = "txtHangSXTB";
-            this.txtHangSXTB.Size = new System.Drawing.Size(181, 22);
-            this.txtHangSXTB.TabIndex = 7;
+            this.txt_HangSXTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_HangSXTB.Location = new System.Drawing.Point(150, 286);
+            this.txt_HangSXTB.Name = "txt_HangSXTB";
+            this.txt_HangSXTB.Size = new System.Drawing.Size(181, 22);
+            this.txt_HangSXTB.TabIndex = 7;
             // 
             // label7
             // 
@@ -137,14 +149,13 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Hãng sản xuất:";
             // 
-            // txtSoLuongHuTB
+            // txt_SoLuongHuTB
             // 
-            this.txtSoLuongHuTB.Enabled = false;
-            this.txtSoLuongHuTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoLuongHuTB.Location = new System.Drawing.Point(150, 354);
-            this.txtSoLuongHuTB.Name = "txtSoLuongHuTB";
-            this.txtSoLuongHuTB.Size = new System.Drawing.Size(181, 22);
-            this.txtSoLuongHuTB.TabIndex = 6;
+            this.txt_SoLuongHuTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SoLuongHuTB.Location = new System.Drawing.Point(150, 354);
+            this.txt_SoLuongHuTB.Name = "txt_SoLuongHuTB";
+            this.txt_SoLuongHuTB.Size = new System.Drawing.Size(181, 22);
+            this.txt_SoLuongHuTB.TabIndex = 6;
             // 
             // label6
             // 
@@ -166,53 +177,44 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Tình trạng:";
             // 
-            // btnXoaHetSP
+            // btn_LuuTB
             // 
-            this.btnXoaHetSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaHetSP.Location = new System.Drawing.Point(256, 456);
-            this.btnXoaHetSP.Name = "btnXoaHetSP";
-            this.btnXoaHetSP.Size = new System.Drawing.Size(75, 28);
-            this.btnXoaHetSP.TabIndex = 9;
-            this.btnXoaHetSP.Text = "Xóa hết";
-            this.btnXoaHetSP.UseVisualStyleBackColor = true;
+            this.btn_LuuTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_LuuTB.Location = new System.Drawing.Point(168, 456);
+            this.btn_LuuTB.Name = "btn_LuuTB";
+            this.btn_LuuTB.Size = new System.Drawing.Size(75, 28);
+            this.btn_LuuTB.TabIndex = 8;
+            this.btn_LuuTB.Text = "Lưu";
+            this.btn_LuuTB.UseVisualStyleBackColor = true;
+            this.btn_LuuTB.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
-            // btnLuuSP
+            // cbb_LoaiTB
             // 
-            this.btnLuuSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuSP.Location = new System.Drawing.Point(168, 456);
-            this.btnLuuSP.Name = "btnLuuSP";
-            this.btnLuuSP.Size = new System.Drawing.Size(75, 28);
-            this.btnLuuSP.TabIndex = 8;
-            this.btnLuuSP.Text = "Lưu";
-            this.btnLuuSP.UseVisualStyleBackColor = true;
-            // 
-            // cmbLoaiTB
-            // 
-            this.cmbLoaiTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLoaiTB.FormattingEnabled = true;
-            this.cmbLoaiTB.Items.AddRange(new object[] {
+            this.cbb_LoaiTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_LoaiTB.FormattingEnabled = true;
+            this.cbb_LoaiTB.Items.AddRange(new object[] {
             "Máy",
             "Tạ"});
-            this.cmbLoaiTB.Location = new System.Drawing.Point(150, 218);
-            this.cmbLoaiTB.Name = "cmbLoaiTB";
-            this.cmbLoaiTB.Size = new System.Drawing.Size(121, 24);
-            this.cmbLoaiTB.TabIndex = 2;
+            this.cbb_LoaiTB.Location = new System.Drawing.Point(150, 218);
+            this.cbb_LoaiTB.Name = "cbb_LoaiTB";
+            this.cbb_LoaiTB.Size = new System.Drawing.Size(121, 24);
+            this.cbb_LoaiTB.TabIndex = 2;
             // 
-            // txtSoLuongTB
+            // txt_SoLuongTB
             // 
-            this.txtSoLuongTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoLuongTB.Location = new System.Drawing.Point(150, 252);
-            this.txtSoLuongTB.Name = "txtSoLuongTB";
-            this.txtSoLuongTB.Size = new System.Drawing.Size(181, 22);
-            this.txtSoLuongTB.TabIndex = 4;
+            this.txt_SoLuongTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SoLuongTB.Location = new System.Drawing.Point(150, 252);
+            this.txt_SoLuongTB.Name = "txt_SoLuongTB";
+            this.txt_SoLuongTB.Size = new System.Drawing.Size(181, 22);
+            this.txt_SoLuongTB.TabIndex = 4;
             // 
-            // txtTenTB
+            // txt_TenTB
             // 
-            this.txtTenTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenTB.Location = new System.Drawing.Point(150, 184);
-            this.txtTenTB.Name = "txtTenTB";
-            this.txtTenTB.Size = new System.Drawing.Size(181, 22);
-            this.txtTenTB.TabIndex = 1;
+            this.txt_TenTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TenTB.Location = new System.Drawing.Point(150, 184);
+            this.txt_TenTB.Name = "txt_TenTB";
+            this.txt_TenTB.Size = new System.Drawing.Size(181, 22);
+            this.txt_TenTB.TabIndex = 1;
             // 
             // label4
             // 
@@ -254,7 +256,7 @@
             this.Text = "FormThietBi";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxTB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbox_TB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,22 +264,22 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox picBoxTB;
-        private System.Windows.Forms.TextBox txtGhiChuTB;
+        private System.Windows.Forms.PictureBox picbox_TB;
+        private System.Windows.Forms.TextBox txt_GhiChuTB;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbTinhTrangTB;
-        private System.Windows.Forms.TextBox txtHangSXTB;
+        private System.Windows.Forms.ComboBox cbb_TinhTrangTB;
+        private System.Windows.Forms.TextBox txt_HangSXTB;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtSoLuongHuTB;
+        private System.Windows.Forms.TextBox txt_SoLuongHuTB;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnXoaHetSP;
-        private System.Windows.Forms.Button btnLuuSP;
-        private System.Windows.Forms.ComboBox cmbLoaiTB;
-        private System.Windows.Forms.TextBox txtSoLuongTB;
-        private System.Windows.Forms.TextBox txtTenTB;
+        private System.Windows.Forms.Button btn_LuuTB;
+        private System.Windows.Forms.ComboBox cbb_LoaiTB;
+        private System.Windows.Forms.TextBox txt_SoLuongTB;
+        private System.Windows.Forms.TextBox txt_TenTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_RefeshField;
     }
 }

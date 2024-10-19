@@ -204,6 +204,7 @@
             this.picbox_HV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picbox_HV.TabIndex = 10;
             this.picbox_HV.TabStop = false;
+            this.picbox_HV.Tag = "";
             this.picbox_HV.Click += new System.EventHandler(this.picbox_HV_Click);
             // 
             // FormHoiVien
