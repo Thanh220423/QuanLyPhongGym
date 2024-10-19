@@ -415,8 +415,9 @@ namespace QuanLyPhongGym.Pages
 
         private void btn_GiaHanHoiVien_Click(object sender, EventArgs e)
         {
-            DataGridViewRow curRow = tbl_HoiVien.CurrentRow;
-            FormGiaHanHV fGiaHan = new FormGiaHanHV(curRow);
+            DataGridViewRow row = tbl_HoiVien.CurrentRow;
+            string strMaHV = row.Cells[0].Value + string.Empty;
+            FormGiaHanHV fGiaHan = new FormGiaHanHV(strMaHV);
             fGiaHan.ShowDialog();
             load_HoiVien();
         }
@@ -432,11 +433,11 @@ namespace QuanLyPhongGym.Pages
                 case "3 tháng":
                     dt = dt.AddMonths(3);
                     break;
-                case "VIP":
-                    dt = dt.AddMonths(13);
-                    break;
                 case "Thường":
                     dt = dt.AddMonths(7);
+                    break;
+                case "VIP":
+                    dt = dt.AddMonths(13);
                     break;
             }
             lbl_HetHan.Text = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);

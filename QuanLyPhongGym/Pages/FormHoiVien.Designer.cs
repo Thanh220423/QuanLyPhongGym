@@ -121,8 +121,8 @@
             this.cbb_GoiTap.Items.AddRange(new object[] {
             "1 tháng",
             "3 tháng",
-            "VIP",
-            "Thường"});
+            "Thường",
+            "VIP"});
             this.cbb_GoiTap.Location = new System.Drawing.Point(130, 313);
             this.cbb_GoiTap.Name = "cbb_GoiTap";
             this.cbb_GoiTap.Size = new System.Drawing.Size(121, 24);

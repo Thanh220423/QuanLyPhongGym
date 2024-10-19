@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnLuu = new System.Windows.Forms.Button();
-            this.cmbGoiTap = new System.Windows.Forms.ComboBox();
+            this.cbb_GoiTap = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -42,20 +42,22 @@
             this.btnLuu.TabIndex = 5;
             this.btnLuu.Text = "Gia hạn";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
-            // cmbGoiTap
+            // cbb_GoiTap
             // 
-            this.cmbGoiTap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGoiTap.FormattingEnabled = true;
-            this.cmbGoiTap.Items.AddRange(new object[] {
+            this.cbb_GoiTap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_GoiTap.FormattingEnabled = true;
+            this.cbb_GoiTap.Items.AddRange(new object[] {
             "1 tháng",
             "3 tháng",
-            "VIP",
-            "Thường"});
-            this.cmbGoiTap.Location = new System.Drawing.Point(85, 34);
-            this.cmbGoiTap.Name = "cmbGoiTap";
-            this.cmbGoiTap.Size = new System.Drawing.Size(139, 24);
-            this.cmbGoiTap.TabIndex = 4;
+            "Thường",
+            "VIP"});
+            this.cbb_GoiTap.Location = new System.Drawing.Point(85, 34);
+            this.cbb_GoiTap.Name = "cbb_GoiTap";
+            this.cbb_GoiTap.Size = new System.Drawing.Size(139, 24);
+            this.cbb_GoiTap.TabIndex = 4;
+            this.cbb_GoiTap.TextChanged += new System.EventHandler(this.cbb_GoiTap_TextChanged);
             // 
             // label1
             // 
@@ -73,7 +75,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(251, 124);
             this.Controls.Add(this.btnLuu);
-            this.Controls.Add(this.cmbGoiTap);
+            this.Controls.Add(this.cbb_GoiTap);
             this.Controls.Add(this.label1);
             this.Name = "FormGiaHanHV";
             this.Text = "FormGiaHanHV";
@@ -85,7 +87,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.ComboBox cmbGoiTap;
+        private System.Windows.Forms.ComboBox cbb_GoiTap;
         private System.Windows.Forms.Label label1;
     }
 }
