@@ -19,7 +19,6 @@ using QuanLyPhongGym.Model;
 using System.Web;
 using OfficeOpenXml;
 using QuanLyPhongGym.Pages;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Text.RegularExpressions;
 
 namespace QuanLyPhongGym.Areas
