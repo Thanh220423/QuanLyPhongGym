@@ -22,6 +22,7 @@ namespace QuanLyPhongGym.Pages
             InitializeComponent();
             if (!string.IsNullOrEmpty(MaHV))
             {
+                groupbox_HV.Text = "CẬP NHẬT HỘI VIÊN";
                 _MaHV = MaHV;
                 HoiVienModel hoiVien = new HoiVienModel { MaHV = MaHV };
                 hoiVien = _dbController.Select<HoiVienModel>(hoiVien);
@@ -43,7 +44,10 @@ namespace QuanLyPhongGym.Pages
                 }
             }
             else
+            {
+                groupbox_HV.Text = "THÊM HỘI VIÊN";
                 ClearField();
+            }
         }
 
         private void ClearField()
@@ -79,6 +83,9 @@ namespace QuanLyPhongGym.Pages
         {
             try
             {
+                if (!_cmmFunc.FieldRequire(AddFieldValidate(new List<string> { "hoten", "sdt" })))
+                    return;
+
                 HoiVienModel hoiVien = null;
                 if (!string.IsNullOrEmpty(_MaHV))
                 {
@@ -161,6 +168,40 @@ namespace QuanLyPhongGym.Pages
         private void btn_RefeshField_Click(object sender, EventArgs e)
         {
             ClearField();
+        }
+
+        private List<FieldRequireValidate> AddFieldValidate(List<string> lstKey)
+        {
+            List<FieldRequireValidate> fields = new List<FieldRequireValidate>();
+            FieldRequireValidate field = null;
+            foreach (string strKey in lstKey)
+            {
+                var Key = strKey.ToLower();
+                switch (Key)
+                {
+                    case "hoten":
+                        {
+                            field = new FieldRequireValidate();
+                            field.ObjText = "Họ tên";
+                            field.ObjValue = txt_HoTen.Text;
+                            field.IsRequire = true;
+                            fields.Add(field);
+                            break;
+                        }
+                    case "sdt":
+                        {
+                            field = new FieldRequireValidate();
+                            field.ObjText = "SĐT";
+                            field.ObjValue = txt_SDT.Text;
+                            field.IsRequire = true;
+                            field.IsValidate = _cmmFunc.Validate_SDT(txt_SDT.Text);
+                            field.ValidateText = "Số điện thoại không đúng, vui lòng kiểm tra lại.";
+                            fields.Add(field);
+                            break;
+                        }
+                }
+            }
+            return fields;
         }
     }
 }

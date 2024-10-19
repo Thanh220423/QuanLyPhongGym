@@ -650,9 +650,9 @@
             this.label33.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.label33.Location = new System.Drawing.Point(123, 47);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(338, 18);
+            this.label33.Size = new System.Drawing.Size(330, 18);
             this.label33.TabIndex = 3;
-            this.label33.Text = "30A Cộng Hòa, quận Tân Bình (+84 120 457 6881)";
+            this.label33.Text = "30A Cộng Hòa, quận Tân Bình (+84 828 222 998)";
             // 
             // label1
             // 
@@ -1192,7 +1192,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tab_Ctrl);
             this.Name = "Index";
-            this.Text = "Index";
+            this.Text = "Trang chủ";
             this.Load += new System.EventHandler(this.Index_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbl_SanPham)).EndInit();

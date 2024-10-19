@@ -121,6 +121,7 @@
     <Compile Include="Model\AccountModel.cs" />
     <Compile Include="Model\ChucVuModel.cs" />
     <Compile Include="Model\ControllerModel.cs" />
+    <Compile Include="Model\FieldRequireValidate.cs" />
     <Compile Include="Model\HoiVienModel.cs" />
     <Compile Include="Model\SanPhamModel.cs" />
     <Compile Include="Model\ThietBiModel.cs" />

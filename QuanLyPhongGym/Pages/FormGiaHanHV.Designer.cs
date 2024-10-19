@@ -78,7 +78,7 @@
             this.Controls.Add(this.cbb_GoiTap);
             this.Controls.Add(this.label1);
             this.Name = "FormGiaHanHV";
-            this.Text = "FormGiaHanHV";
+            this.Text = "Trang gia hạn gói";
             this.ResumeLayout(false);
             this.PerformLayout();
 

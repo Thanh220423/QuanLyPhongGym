@@ -21,6 +21,7 @@ using OfficeOpenXml;
 using System.Web.UI;
 using QuanLyPhongGym.Pages;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text.RegularExpressions;
 
 namespace QuanLyPhongGym.Areas
 {
@@ -79,22 +80,30 @@ namespace QuanLyPhongGym.Areas
             return expando;
         }
 
-        public bool FieldRequire(List<dynamic> lstRequire)
+        public bool FieldRequire(List<FieldRequireValidate> lstRequire)
         {
-            foreach (dynamic obj in lstRequire)
+            foreach (FieldRequireValidate obj in lstRequire)
             {
-                if (string.IsNullOrEmpty(obj.KeyObj))
+                if (obj.IsRequire && string.IsNullOrEmpty(obj.ObjValue))
                 {
-                    MessageBox.Show($"Trường '{obj.Key}' là bắt buộc nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show($"Trường '{obj.ObjText}' là bắt buộc nhập.", "Thông báo");
                     return false;
                 }
-                else if (obj.IsValidate != null && !obj.IsValidate)
+                if (!obj.IsValidate)
                 {
-                    MessageBox.Show(obj.ValidateText, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show(obj.ValidateText, "Thông báo");
                     return false;
                 }
             }
             return true;
+        }
+
+        public bool Validate_SDT(string strVal)
+        {
+            if (string.IsNullOrEmpty(strVal))
+                return true;
+            string pattern = @"^(0\d{9}|(\+84)\d{9})$";
+            return Regex.IsMatch(strVal, pattern);
         }
 
         public static bool IsList(object value)

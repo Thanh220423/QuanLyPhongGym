@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupbox_TB = new System.Windows.Forms.GroupBox();
             this.btn_RefeshField = new System.Windows.Forms.Button();
             this.picbox_TB = new System.Windows.Forms.PictureBox();
             this.txt_GhiChuTB = new System.Windows.Forms.TextBox();
@@ -46,36 +46,35 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.groupbox_TB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_TB)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupbox_TB
             // 
-            this.groupBox1.Controls.Add(this.btn_RefeshField);
-            this.groupBox1.Controls.Add(this.picbox_TB);
-            this.groupBox1.Controls.Add(this.txt_GhiChuTB);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbb_TinhTrangTB);
-            this.groupBox1.Controls.Add(this.txt_HangSXTB);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txt_SoLuongHuTB);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.btn_LuuTB);
-            this.groupBox1.Controls.Add(this.cbb_LoaiTB);
-            this.groupBox1.Controls.Add(this.txt_SoLuongTB);
-            this.groupBox1.Controls.Add(this.txt_TenTB);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(364, 494);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "THÊM THIẾT BỊ";
+            this.groupbox_TB.Controls.Add(this.btn_RefeshField);
+            this.groupbox_TB.Controls.Add(this.picbox_TB);
+            this.groupbox_TB.Controls.Add(this.txt_GhiChuTB);
+            this.groupbox_TB.Controls.Add(this.label2);
+            this.groupbox_TB.Controls.Add(this.cbb_TinhTrangTB);
+            this.groupbox_TB.Controls.Add(this.txt_HangSXTB);
+            this.groupbox_TB.Controls.Add(this.label7);
+            this.groupbox_TB.Controls.Add(this.txt_SoLuongHuTB);
+            this.groupbox_TB.Controls.Add(this.label6);
+            this.groupbox_TB.Controls.Add(this.label5);
+            this.groupbox_TB.Controls.Add(this.btn_LuuTB);
+            this.groupbox_TB.Controls.Add(this.cbb_LoaiTB);
+            this.groupbox_TB.Controls.Add(this.txt_SoLuongTB);
+            this.groupbox_TB.Controls.Add(this.txt_TenTB);
+            this.groupbox_TB.Controls.Add(this.label4);
+            this.groupbox_TB.Controls.Add(this.label3);
+            this.groupbox_TB.Controls.Add(this.label1);
+            this.groupbox_TB.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupbox_TB.Location = new System.Drawing.Point(23, 12);
+            this.groupbox_TB.Name = "groupbox_TB";
+            this.groupbox_TB.Size = new System.Drawing.Size(364, 494);
+            this.groupbox_TB.TabIndex = 3;
+            this.groupbox_TB.TabStop = false;
             // 
             // btn_RefeshField
             // 
@@ -242,20 +241,20 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 187);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 16);
+            this.label1.Size = new System.Drawing.Size(91, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tên thiết bị:";
+            this.label1.Text = "Tên thiết bị (*):";
             // 
             // FormThietBi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 524);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupbox_TB);
             this.Name = "FormThietBi";
-            this.Text = "FormThietBi";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "Trang thiết bị";
+            this.groupbox_TB.ResumeLayout(false);
+            this.groupbox_TB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_TB)).EndInit();
             this.ResumeLayout(false);
 
@@ -263,7 +262,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupbox_TB;
         private System.Windows.Forms.PictureBox picbox_TB;
         private System.Windows.Forms.TextBox txt_GhiChuTB;
         private System.Windows.Forms.Label label2;

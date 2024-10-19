@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupbox_SP = new System.Windows.Forms.GroupBox();
             this.btn_RefeshField = new System.Windows.Forms.Button();
             this.picbox_SP = new System.Windows.Forms.PictureBox();
             this.txt_HangSXSP = new System.Windows.Forms.TextBox();
@@ -48,38 +48,37 @@
             this.cbb_TinhTrangSP = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_LuuSP = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.groupbox_SP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_SP)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupbox_SP
             // 
-            this.groupBox1.Controls.Add(this.btn_RefeshField);
-            this.groupBox1.Controls.Add(this.picbox_SP);
-            this.groupBox1.Controls.Add(this.txt_HangSXSP);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txt_TrongLuongSP);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txt_DonGiaSP);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.date_NgayNhap);
-            this.groupBox1.Controls.Add(this.cbb_LoaiSP);
-            this.groupBox1.Controls.Add(this.txt_SoLuongSP);
-            this.groupBox1.Controls.Add(this.txt_TenSP);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cbb_TinhTrangSP);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.btn_LuuSP);
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(371, 511);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "SỬA SẢN PHẨM";
+            this.groupbox_SP.Controls.Add(this.btn_RefeshField);
+            this.groupbox_SP.Controls.Add(this.picbox_SP);
+            this.groupbox_SP.Controls.Add(this.txt_HangSXSP);
+            this.groupbox_SP.Controls.Add(this.label7);
+            this.groupbox_SP.Controls.Add(this.txt_TrongLuongSP);
+            this.groupbox_SP.Controls.Add(this.label6);
+            this.groupbox_SP.Controls.Add(this.txt_DonGiaSP);
+            this.groupbox_SP.Controls.Add(this.label5);
+            this.groupbox_SP.Controls.Add(this.date_NgayNhap);
+            this.groupbox_SP.Controls.Add(this.cbb_LoaiSP);
+            this.groupbox_SP.Controls.Add(this.txt_SoLuongSP);
+            this.groupbox_SP.Controls.Add(this.txt_TenSP);
+            this.groupbox_SP.Controls.Add(this.label4);
+            this.groupbox_SP.Controls.Add(this.label3);
+            this.groupbox_SP.Controls.Add(this.label2);
+            this.groupbox_SP.Controls.Add(this.label1);
+            this.groupbox_SP.Controls.Add(this.cbb_TinhTrangSP);
+            this.groupbox_SP.Controls.Add(this.label8);
+            this.groupbox_SP.Controls.Add(this.btn_LuuSP);
+            this.groupbox_SP.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupbox_SP.Location = new System.Drawing.Point(23, 12);
+            this.groupbox_SP.Name = "groupbox_SP";
+            this.groupbox_SP.Size = new System.Drawing.Size(371, 511);
+            this.groupbox_SP.TabIndex = 3;
+            this.groupbox_SP.TabStop = false;
             // 
             // btn_RefeshField
             // 
@@ -235,9 +234,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(32, 182);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 16);
+            this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Tên sản phẩm:";
+            this.label1.Text = "Tên sản phẩm (*):";
             // 
             // cbb_TinhTrangSP
             // 
@@ -277,11 +276,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 535);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupbox_SP);
             this.Name = "FormSanPham";
-            this.Text = "FormSanPham";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "Trang sản phẩm";
+            this.groupbox_SP.ResumeLayout(false);
+            this.groupbox_SP.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_SP)).EndInit();
             this.ResumeLayout(false);
 
@@ -289,7 +288,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupbox_SP;
         private System.Windows.Forms.PictureBox picbox_SP;
         private System.Windows.Forms.TextBox txt_HangSXSP;
         private System.Windows.Forms.Label label7;

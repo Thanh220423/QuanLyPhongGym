@@ -2,6 +2,7 @@
 using QuanLyPhongGym.Controller;
 using QuanLyPhongGym.Model;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace QuanLyPhongGym.Pages
             InitializeComponent();
             if (!string.IsNullOrEmpty(MaTB))
             {
+                groupbox_TB.Text = "CẬP NHẬT THIẾT BỊ";
                 _MaTB = MaTB;
                 ThietBiModel thietBi = new ThietBiModel { MaTB = MaTB };
                 thietBi = _dbController.Select<ThietBiModel>(thietBi);
@@ -43,7 +45,10 @@ namespace QuanLyPhongGym.Pages
                 }
             }
             else
+            {
+                groupbox_TB.Text = "THÊM THIẾT BỊ";
                 ClearField();
+            }
         }
 
         private void ClearField()
@@ -77,6 +82,9 @@ namespace QuanLyPhongGym.Pages
         {
             try
             {
+                if (!_cmmFunc.FieldRequire(AddFieldValidate(new List<string> { "tentb" })))
+                    return;
+
                 ThietBiModel thietBi = null;
                 if (!string.IsNullOrEmpty(_MaTB))
                 {
@@ -136,6 +144,29 @@ namespace QuanLyPhongGym.Pages
         private void btn_RefeshField_Click(object sender, EventArgs e)
         {
             ClearField();
+        }
+
+        private List<FieldRequireValidate> AddFieldValidate(List<string> lstKey)
+        {
+            List<FieldRequireValidate> fields = new List<FieldRequireValidate>();
+            FieldRequireValidate field = null;
+            foreach (string strKey in lstKey)
+            {
+                var Key = strKey.ToLower();
+                switch (Key)
+                {
+                    case "tentb":
+                        {
+                            field = new FieldRequireValidate();
+                            field.ObjText = "Tên thiết bị";
+                            field.ObjValue = txt_TenTB.Text;
+                            field.IsRequire = true;
+                            fields.Add(field);
+                            break;
+                        }
+                }
+            }
+            return fields;
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupbox_HV = new System.Windows.Forms.GroupBox();
             this.cbb_GioiTinh = new System.Windows.Forms.ComboBox();
             this.btn_RefeshField = new System.Windows.Forms.Button();
             this.btn_Luu = new System.Windows.Forms.Button();
@@ -42,32 +42,31 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picbox_HV = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.groupbox_HV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_HV)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupbox_HV
             // 
-            this.groupBox1.Controls.Add(this.cbb_GioiTinh);
-            this.groupBox1.Controls.Add(this.btn_RefeshField);
-            this.groupBox1.Controls.Add(this.btn_Luu);
-            this.groupBox1.Controls.Add(this.lbl_HetHan);
-            this.groupBox1.Controls.Add(this.cbb_GoiTap);
-            this.groupBox1.Controls.Add(this.txt_SDT);
-            this.groupBox1.Controls.Add(this.txt_HoTen);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.picbox_HV);
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 447);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "THÊM HỘI VIÊN";
+            this.groupbox_HV.Controls.Add(this.cbb_GioiTinh);
+            this.groupbox_HV.Controls.Add(this.btn_RefeshField);
+            this.groupbox_HV.Controls.Add(this.btn_Luu);
+            this.groupbox_HV.Controls.Add(this.lbl_HetHan);
+            this.groupbox_HV.Controls.Add(this.cbb_GoiTap);
+            this.groupbox_HV.Controls.Add(this.txt_SDT);
+            this.groupbox_HV.Controls.Add(this.txt_HoTen);
+            this.groupbox_HV.Controls.Add(this.label5);
+            this.groupbox_HV.Controls.Add(this.label4);
+            this.groupbox_HV.Controls.Add(this.label3);
+            this.groupbox_HV.Controls.Add(this.label2);
+            this.groupbox_HV.Controls.Add(this.label1);
+            this.groupbox_HV.Controls.Add(this.picbox_HV);
+            this.groupbox_HV.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupbox_HV.Location = new System.Drawing.Point(23, 12);
+            this.groupbox_HV.Name = "groupbox_HV";
+            this.groupbox_HV.Size = new System.Drawing.Size(344, 447);
+            this.groupbox_HV.TabIndex = 2;
+            this.groupbox_HV.TabStop = false;
             // 
             // cbb_GioiTinh
             // 
@@ -171,9 +170,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(30, 235);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 16);
+            this.label3.Size = new System.Drawing.Size(53, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "SĐT:";
+            this.label3.Text = "SĐT (*):";
             // 
             // label2
             // 
@@ -191,9 +190,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(30, 196);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
+            this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Họ tên:";
+            this.label1.Text = "Họ tên (*):";
             // 
             // picbox_HV
             // 
@@ -212,11 +211,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 473);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupbox_HV);
             this.Name = "FormHoiVien";
-            this.Text = "FormHoiVien";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "Trang khách hàng";
+            this.groupbox_HV.ResumeLayout(false);
+            this.groupbox_HV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbox_HV)).EndInit();
             this.ResumeLayout(false);
 
@@ -224,7 +223,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupbox_HV;
         private System.Windows.Forms.ComboBox cbb_GioiTinh;
         private System.Windows.Forms.Button btn_RefeshField;
         private System.Windows.Forms.Button btn_Luu;
