@@ -124,7 +124,6 @@ namespace QuanLyPhongGym.Pages
             }
         }
 
-
         private void cbb_GoiTap_TextChanged(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
