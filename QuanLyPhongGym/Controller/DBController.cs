@@ -894,6 +894,7 @@ namespace QuanLyPhongGym.Controller
                 Cmm.CommandType = CommandType.Text;
                 string DatabaseName = obj.GetDataBaseName();
                 string SchemaName = obj.GetSchemaName();
+
                 if (colsUpdate == null && cmmAttr != null && !string.IsNullOrEmpty(cmmAttr.StoreName))
                 {
                     string StoreName = GetStoreFullName(cmmAttr.StoreName, SchemaName, DatabaseName);
@@ -915,14 +916,16 @@ namespace QuanLyPhongGym.Controller
                     else
                     {
                         var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
-                        //Ko truyền danh sách column, lấy tất cả các field except Ignore
+                        // Ko truyền danh sách column, lấy tất cả các field except Ignore
                         foreach (var p in props)
                         {
                             // Nếu là cột Ignore thì bỏ qua không xử lý
                             var ignore = (p.GetCustomAttributes(typeof(IgnoreAttribute), true).Length > 0 || p.GetCustomAttributes(typeof(IgnoreSAttribute), true).Length > 0);
                             if (ignore) continue;
+
                             object itemValue = CmmFunc.GetPropertyValue(obj, p);
                             if (flgIgnoreNullVal && itemValue == null) continue;
+
                             Type pType = Nullable.GetUnderlyingType(p.PropertyType) ?? p.PropertyType;
                             if (itemValue != null && pType == typeof(DateTime) && (DateTime)itemValue == default(DateTime))
                             {
@@ -935,11 +938,28 @@ namespace QuanLyPhongGym.Controller
                                     itemValue = DBNull.Value;
                                 }
                             }
+
                             if (itemValue == null)
                             {
                                 itemValue = DBNull.Value;
                             }
-                            Cmm.Parameters.AddWithValue("@" + p.Name, itemValue);
+
+                            // Kiểm tra kiểu byte[] và thay thế null bằng DBNull.Value
+                            if (p.PropertyType == typeof(byte[]))
+                            {
+                                if (itemValue == null)
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = DBNull.Value;
+                                }
+                                else
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = itemValue;
+                                }
+                            }
+                            else
+                            {
+                                Cmm.Parameters.AddWithValue("@" + p.Name, itemValue);
+                            }
                         }
                     }
 
@@ -951,7 +971,7 @@ namespace QuanLyPhongGym.Controller
                     tableName = obj.GetTableName(type);
 
                     string strWhere = string.Empty;
-                    string clos = string.Empty;
+                    string clos = string.Empty; // Khôi phục biến clos
 
                     if (cmmAttr != null)
                     {
@@ -985,12 +1005,28 @@ namespace QuanLyPhongGym.Controller
                                 itemValue = DBNull.Value;
                             }
 
+                            // Kiểm tra kiểu byte[] và thay thế null bằng DBNull.Value
+                            if (p.PropertyType == typeof(byte[]))
+                            {
+                                if (itemValue == null)
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = DBNull.Value;
+                                }
+                                else
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = itemValue;
+                                }
+                            }
+                            else
+                            {
+                                Cmm.Parameters.AddWithValue("@" + p.Name, itemValue);
+                            }
+
                             if (!string.IsNullOrEmpty(clos))
                             {
                                 clos += ",";
                             }
-                            clos += "[" + formatPar + "]=@" + formatPar;
-                            Cmm.Parameters.AddWithValue("@" + formatPar, itemValue);
+                            clos += "[" + formatPar + "]=@" + formatPar; // Xây dựng câu lệnh SET
                         }
                     }
                     else
@@ -1003,6 +1039,7 @@ namespace QuanLyPhongGym.Controller
                             if (ignore) continue;
                             if (lstPriKey.Contains(p.Name)) continue;
                             if (colsUpdate != null && !colsUpdate.Contains(p.Name)) continue;
+
                             object itemValue = CmmFunc.GetPropertyValue(obj, p);
                             Type pType = Nullable.GetUnderlyingType(p.PropertyType) ?? p.PropertyType;
                             if (itemValue != null && pType == typeof(DateTime) && (DateTime)itemValue == default(DateTime))
@@ -1024,14 +1061,32 @@ namespace QuanLyPhongGym.Controller
                                 itemValue = DBNull.Value;
                             }
 
+                            // Kiểm tra kiểu byte[] và thay thế null bằng DBNull.Value
+                            if (p.PropertyType == typeof(byte[]))
+                            {
+                                if (itemValue == null)
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = DBNull.Value;
+                                }
+                                else
+                                {
+                                    Cmm.Parameters.Add("@" + p.Name, SqlDbType.VarBinary).Value = itemValue;
+                                }
+                            }
+                            else
+                            {
+                                Cmm.Parameters.AddWithValue("@" + p.Name, itemValue);
+                            }
+
                             if (!string.IsNullOrEmpty(clos))
                             {
                                 clos += ",";
                             }
-                            clos += "[" + p.Name + "]=@" + p.Name;
-                            Cmm.Parameters.AddWithValue("@" + p.Name, itemValue);
+                            clos += "[" + p.Name + "]=@" + p.Name; // Xây dựng câu lệnh SET
                         }
                     }
+
+                    // Xử lý các khóa chính
                     foreach (string priKeyItem in lstPriKey)
                     {
                         if (!string.IsNullOrEmpty(strWhere))
@@ -1045,11 +1100,13 @@ namespace QuanLyPhongGym.Controller
                     string TableFullName = GetTableFullName(tableName, DatabaseName, SchemaName);
                     Cmm.CommandText = string.Format("UPDATE {0} SET {1} WHERE {2}", TableFullName, clos, strWhere);
                 }
-                // Nếu có sử dụng transation thì
+
+                // Nếu có sử dụng transaction thì
                 if (!exeCon && Tran != null)
                 {
                     Cmm.Transaction = Tran;
                 }
+
                 Cmm.ExecuteNonQuery();
                 retValue = 1;
             }
